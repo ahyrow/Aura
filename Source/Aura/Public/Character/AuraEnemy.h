@@ -7,17 +7,23 @@
 #include "Interaction/EnemyInterface.h"
 #include "AuraEnemy.generated.h"
 
+
 /**
  * 
  */
 UCLASS()
-class AURA_API AAuraEnemy : public AAuraCharacter,public  IEnemyInterface
+class AURA_API AAuraEnemy : public AAuraCharacter , public  IEnemyInterface
 {
 	GENERATED_BODY()
 public:
 	AAuraEnemy();
-public:
-	virtual void HightlightActor() override;
 
+   /**Enemy Interface**/
+	virtual void HightlightActor() override;
 	virtual void UnHightlightActor() override;
+   /** end Enemy Interface**/
+
+protected:
+	 
+	virtual void BeginPlay() override;
 };
