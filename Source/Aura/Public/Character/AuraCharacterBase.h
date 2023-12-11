@@ -10,6 +10,7 @@
 
 class UAbilitySystemComponent;
 class UAttributeSet;
+class UAuraAttributeSet;
 
 
 UCLASS(Abstract)
@@ -23,6 +24,7 @@ public:
 	
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override ;
 	UAttributeSet* GetAttributeSet() { return AttributeSet; };
+	//UAuraAttributeSet* GetAttributeSet() { return AttributeSet; };
 
 protected:
 	virtual void BeginPlay() override;
@@ -33,7 +35,9 @@ public:
 
     UPROPERTY()
 	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent;
-	UPROPERTY()
+    UPROPERTY()
 	TObjectPtr<UAttributeSet> AttributeSet;
+	//UPROPERTY()
+	//TObjectPtr<UAuraAttributeSet> AttributeSet;
 
 };

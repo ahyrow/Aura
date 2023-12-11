@@ -26,6 +26,7 @@ void AAuraCharacter::PossessedBy(AController* NewController)
 	 Super::PossessedBy(NewController);
 	 
 	 InitAbilityActor();
+
 }
 
 
@@ -34,17 +35,19 @@ void AAuraCharacter::OnRep_PlayerState()
 	Super::OnRep_PlayerState();
 
 	InitAbilityActor();
+
+
 }
 
 void AAuraCharacter::InitAbilityActor()
 {
-
-	AAuraPlayerState* AuraPlayerState =GetPlayerState<AAuraPlayerState>();
 	
+	AAuraPlayerState* AuraPlayerState =GetPlayerState<AAuraPlayerState>();
+
    	check(AuraPlayerState);
 	AuraPlayerState->GetAbilitySystemComponent()->InitAbilityActorInfo(AuraPlayerState,this);
 	
-	//ÉèÖÃ **ÄÜÁ¦ÏµÍ³** ¼° **ÊôÐÔ¼¯** Ö¸Õë
+	//ï¿½ï¿½ï¿½ï¿½ **ï¿½ï¿½ï¿½ï¿½ÏµÍ³** ï¿½ï¿½ **ï¿½ï¿½ï¿½Ô¼ï¿½** Ö¸ï¿½ï¿½
 	AbilitySystemComponent= AuraPlayerState->GetAbilitySystemComponent();
 	AttributeSet = AuraPlayerState->GetAttributeSet();
 

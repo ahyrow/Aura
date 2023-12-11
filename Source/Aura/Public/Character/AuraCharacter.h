@@ -17,11 +17,9 @@ public:
 
 	AAuraCharacter();
 
-private:
-    
-	virtual void PossessedBy(AController* NewController) override;
-	virtual void OnRep_PlayerState();
 
 public:
 	void InitAbilityActor();
+	virtual void PossessedBy(AController* NewController) override;
+	virtual void OnRep_PlayerState();
 };

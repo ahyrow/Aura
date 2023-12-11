@@ -2,6 +2,7 @@
 
 
 #include "Player/AuraPlayerState.h"
+#include "AbilitySystem/AuraAttributeSet.h"
 #include "AbilitySystemComponent.h"
 
 AAuraPlayerState::AAuraPlayerState()
@@ -11,7 +12,8 @@ AAuraPlayerState::AAuraPlayerState()
 	AbilitySystemComponent = CreateDefaultSubobject<UAbilitySystemComponent>("AbilitySystemComponent");
 	AbilitySystemComponent -> SetIsReplicated(true);
 	AbilitySystemComponent->SetReplicationMode(EGameplayEffectReplicationMode::Mixed);
-	AttributeSet=CreateDefaultSubobject<UAttributeSet>("AttributeSet");
+	//AttributeSet=CreateDefaultSubobject<UAttributeSet>("AttributeSet");
+    AttributeSet=CreateDefaultSubobject<UAuraAttributeSet>("AttributeSet");
 	 //服务器同步  网络更新频率
 	NetUpdateFrequency = 100.f;
 }

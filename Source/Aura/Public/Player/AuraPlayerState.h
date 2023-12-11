@@ -8,7 +8,9 @@
 #include "AuraPlayerState.generated.h"
 
 class UAbilitySystemComponent;
-class UAttributeSet;
+class UAttributeSet; 
+class UAuraAttributeSet;
+
 
 /**
  * 
@@ -31,5 +33,7 @@ public:
 	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent;
 	UPROPERTY()
 	TObjectPtr<UAttributeSet> AttributeSet;
+	/*UPROPERTY()
+	TObjectPtr<UAuraAttributeSet> AttributeSet;*/
 
 };
