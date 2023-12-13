@@ -3,36 +3,62 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "UObject/NoExportTypes.h"
+#include "AbilitySystemComponent.h"
 #include "AuraWidgetController.generated.h"
 
 
 
-class AAuraPlayerState;
-class AAuraPlayerController;
+class APlayerState;
+class APlayerController;
 class UAbilitySystemComponent;
-class UAuraAttributeSet;
+class UAttributeSet;
+
 /**
  * 
  */
+USTRUCT(BlueprintType)
+struct FWidgetControllerParms
+{
+
+	GENERATED_BODY()
+	
+	FWidgetControllerParms(){}
+	FWidgetControllerParms(APlayerController* PC, APlayerState* PS,UAbilitySystemComponent* ASC, UAttributeSet* AS):
+	PlayerController(PC),PlayerState(PS),AbilitySystemComponent(ASC),AttributeSet(AS){}
+    UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	APlayerController* PlayerController = nullptr;
+	
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	APlayerState* PlayerState = nullptr;
+	
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	UAbilitySystemComponent* AbilitySystemComponent = nullptr;
+	
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	UAttributeSet* AttributeSet = nullptr;
+};
 UCLASS()
 class AURA_API UAuraWidgetController : public UObject
 {
 	GENERATED_BODY()
 
+public:
+	//创建初始化结构体函数
+	UFUNCTION(BlueprintCallable)
+	void SetWidgetControllerParms(const FWidgetControllerParms& WCParms);
 protected:
 	//玩家状态
 	UPROPERTY(BlueprintReadOnly,Category = "WidgetController")
-	TObjectPtr<AAuraPlayerState> PlayerState;
+	TObjectPtr<APlayerState> PlayerState; 
 
 	UPROPERTY(BlueprintReadOnly,Category = "WidgetController")
-	TObjectPtr<AAuraPlayerController> PlayerController;
+	TObjectPtr<APlayerController> PlayerController;
 
 	UPROPERTY(BlueprintReadOnly,Category = "WidgetController")
 	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent;
 
 	UPROPERTY(BlueprintReadOnly,Category = "WidgetController")
-	TObjectPtr<UAuraAttributeSet> AttributeSet;
+	TObjectPtr<UAttributeSet> AttributeSet;
 
 	
 };
