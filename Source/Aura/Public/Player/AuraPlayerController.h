@@ -44,11 +44,12 @@ private:
 private:
 	//»Øµ÷º¯Êý
 	void Move(const FInputActionValue& InputActionValue);
-
+	     
+	//TObjectPtr<IEnemyInterface> LastActor;
 	IEnemyInterface* LastActor;
+	//TObjectPtr<IEnemyInterface> ThisActor;
+
 	IEnemyInterface* ThisActor;
-
-
 
 
 };

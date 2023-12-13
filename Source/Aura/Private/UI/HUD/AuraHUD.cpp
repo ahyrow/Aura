@@ -31,6 +31,9 @@ void AAuraHUD::InitOverlay(APlayerController* PC, APlayerState* PS,
 	UOverlayWidgetController* WidgetController = GetOverlayWidgetController(WidgetControllerParms);
 	OverlayWidget->SetWidgetController(WidgetController);
 
+	//绑定 更新生命值委托
+	WidgetController->BroadcastInitiaValues();
+
 	//添加进视口
 	OverlayWidget->AddToViewport();
 }

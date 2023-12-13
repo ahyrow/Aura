@@ -12,3 +12,7 @@ void UAuraWidgetController::SetWidgetControllerParms(const FWidgetControllerParm
 
 	
 }
+
+void UAuraWidgetController::BroadcastInitiaValues()
+{
+}

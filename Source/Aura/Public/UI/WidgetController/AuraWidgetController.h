@@ -46,6 +46,8 @@ public:
 	//创建初始化结构体函数
 	UFUNCTION(BlueprintCallable)
 	void SetWidgetControllerParms(const FWidgetControllerParms& WCParms);
+
+	virtual void BroadcastInitiaValues();
 protected:
 	//玩家状态
 	UPROPERTY(BlueprintReadOnly,Category = "WidgetController")

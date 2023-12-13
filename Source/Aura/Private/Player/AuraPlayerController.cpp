@@ -22,8 +22,12 @@ void AAuraPlayerController::BeginPlay()
 
 	//设置增强玩家输入子系统
 	UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer());
-	check(Subsystem);
-	Subsystem->AddMappingContext(AuraContext, 0);
+	//check(Subsystem);
+	if(Subsystem)
+	{
+		Subsystem->AddMappingContext(AuraContext, 0);
+
+	}
 
 	//设置鼠标显示 及 常规样式
 	bShowMouseCursor = true;
