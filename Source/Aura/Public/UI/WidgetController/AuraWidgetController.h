@@ -48,6 +48,9 @@ public:
 	void SetWidgetControllerParms(const FWidgetControllerParms& WCParms);
 
 	virtual void BroadcastInitiaValues();
+
+	//绑定依赖项的回调函数
+	virtual void BindCallbacksToDependcies();
 protected:
 	//玩家状态
 	UPROPERTY(BlueprintReadOnly,Category = "WidgetController")

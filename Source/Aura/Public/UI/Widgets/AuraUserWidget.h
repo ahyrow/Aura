@@ -23,6 +23,6 @@ protected:
 	TObjectPtr<UObject> WidgetController;
 protected:
 	//初始化控件效果
-	UFUNCTION(BlueprintImplementableEvent)  //蓝图可实现事件宏
+	UFUNCTION(BlueprintImplementableEvent)  //    在蓝图实现事件 在C++里调用
 	void WidgetControllerSet();
 };

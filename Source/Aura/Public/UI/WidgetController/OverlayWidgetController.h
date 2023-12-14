@@ -24,8 +24,10 @@ class AURA_API UOverlayWidgetController : public UAuraWidgetController
 
 
 public:
+
 	virtual void BroadcastInitiaValues() override;
 
+	virtual void  BindCallbacksToDependcies() override;
 public:
 	//创建代理
 	UPROPERTY(BlueprintAssignable, Category = "GAS|Attributes") //蓝图可分配
@@ -39,5 +41,13 @@ public:
 
 	UPROPERTY(BlueprintAssignable, Category = "GAS|Attributes") //蓝图可分配
 	FOnMaxManaChangedSignature OnMaxManaChanged;
-	
+
+protected:
+	void HealthChanged(const  FOnAttributeChangeData& Data) const;
+
+	void MaxHealthChanged(const  FOnAttributeChangeData& Data) const;
+
+	void ManaChanged(const  FOnAttributeChangeData& Data) const;
+
+	void MaxManaChanged(const  FOnAttributeChangeData& Data) const;
 };
