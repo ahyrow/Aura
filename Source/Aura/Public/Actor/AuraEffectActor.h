@@ -7,9 +7,7 @@
 #include "AuraEffectActor.generated.h"
 
 
-class USphereComponent;
-class UStaticMeshComponent;
-
+class UGameplayEffect;
 UCLASS()
 class AURA_API AAuraEffectActor : public AActor
 {
@@ -17,7 +15,9 @@ class AURA_API AAuraEffectActor : public AActor
 	
 public:	
 	AAuraEffectActor();
-	UFUNCTION()
+
+	//由蓝图完成
+	/*UFUNCTION()
 	virtual void OnOverlap(UPrimitiveComponent* OverlappedComponent, 
 		AActor* OtherActor, 
 		UPrimitiveComponent* OtherComp, 
@@ -29,15 +29,19 @@ public:
 		AActor* OtherActor,
 		UPrimitiveComponent* OtherComp,
 		int32 OtherBodyIndex
-		);
+		);*/
 protected:
 	
 	virtual void BeginPlay() override;
 	
 
 protected:
-	UPROPERTY(VisibleAnywhere)
-	TObjectPtr<USphereComponent> Sphere;
-	UPROPERTY(VisibleAnywhere)
-	TObjectPtr<UStaticMeshComponent> Mesh;
+
+	 //对目标施加效果
+	UFUNCTION(BlueprintCallable)
+	void ApplyEffectToTarget(AActor* Target,TSubclassOf<UGameplayEffect> GameplayEffectClass);
+	
+	UPROPERTY(EditAnywhere,Category="Applid Effects")
+	TSubclassOf<UGameplayEffect> InstantGamePlayEffectClass;
+
 };
