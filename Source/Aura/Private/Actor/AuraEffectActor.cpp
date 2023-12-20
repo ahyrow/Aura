@@ -33,7 +33,7 @@ void AAuraEffectActor::ApplyEffectToTarget(AActor* ActorTarget, TSubclassOf<UGam
 	check(GameplayEffectClass);
 	FGameplayEffectContextHandle EffectContextHandle =TargetASC->MakeEffectContext();
 	EffectContextHandle.AddSourceObject(this); 
-    const FGameplayEffectSpecHandle EffectSpecHandle=TargetASC->MakeOutgoingSpec(GameplayEffectClass,1.f,EffectContextHandle)	;
+    const FGameplayEffectSpecHandle EffectSpecHandle=TargetASC->MakeOutgoingSpec(GameplayEffectClass,ActorLevel,EffectContextHandle)	;
     //存储 效果数据
 	const FActiveGameplayEffectHandle ActiveGameplayEffectHandle=TargetASC->ApplyGameplayEffectSpecToSelf(*EffectSpecHandle.Data.Get());
 
@@ -94,8 +94,8 @@ void AAuraEffectActor::OnEndOverlap(AActor* TargetActor)
 		{
           if(TargetASC == HandlePair.Value )
           {
-              //如果能力系统组件与当前Map容器中的值相等   清除游戏效果
-          	TargetASC->RemoveActiveGameplayEffect(HandlePair.Key);
+          	//如果能力系统组件与当前Map容器中的值相等   清除游戏效果
+          	TargetASC->RemoveActiveGameplayEffect(HandlePair.Key,1);
           	HandlesToRemove.Add(HandlePair.Key);
           }
 			
