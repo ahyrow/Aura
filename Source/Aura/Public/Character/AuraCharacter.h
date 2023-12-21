@@ -19,7 +19,7 @@ public:
 
 
 public:
-	void InitAbilityActor();
+	virtual void InitAbilityActorInfo() override;
 	virtual void PossessedBy(AController* NewController) override;
 	virtual void OnRep_PlayerState();
 };

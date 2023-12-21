@@ -6,6 +6,8 @@
 #include "AbilitySystemComponent.h"
 #include "AuraAbilitySystemComponent.generated.h"
 
+
+DECLARE_MULTICAST_DELEGATE_OneParam(FEffectAssetTags, const FGameplayTagContainer& /*资产标签*/)
 /**
  * 
  */
@@ -13,5 +15,13 @@ UCLASS()
 class AURA_API UAuraAbilitySystemComponent : public UAbilitySystemComponent
 {
 	GENERATED_BODY()
-	
-};
+public:
+	//能力信息集
+	void AbilityActorInfoSet();
+
+	FEffectAssetTags EffectAssetTags;
+protected:
+	//回调函数  被调用来响应应用于这个 能力系统组件的任何效果
+    //效果应用
+	void EffectApplied(UAbilitySystemComponent* AbilitySystemComponent, const FGameplayEffectSpec& EffectSpec, FActiveGameplayEffectHandle ActiveEffectHandle);
+}; 

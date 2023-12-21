@@ -7,6 +7,7 @@
 #include <Player\AuraPlayerState.h>
 #include <Player/AuraPlayerController.h>
 #include <UI/HUD/AuraHUD.h>
+#include "AbilitySystem/AuraAbilitySystemComponent.h"
 
 AAuraCharacter::AAuraCharacter()
 {
@@ -27,7 +28,8 @@ void AAuraCharacter::PossessedBy(AController* NewController)
 {
 	 Super::PossessedBy(NewController);
 	 
-	 InitAbilityActor();
+	InitAbilityActorInfo();
+
 
 }
 
@@ -36,18 +38,21 @@ void AAuraCharacter::OnRep_PlayerState()
 {
 	Super::OnRep_PlayerState();
 
-	InitAbilityActor();
+	InitAbilityActorInfo();
 
 
 }
 
-void AAuraCharacter::InitAbilityActor()
+void AAuraCharacter::InitAbilityActorInfo()
 {
 	
 	AAuraPlayerState* AuraPlayerState =GetPlayerState<AAuraPlayerState>();
 
    	check(AuraPlayerState);
 	AuraPlayerState->GetAbilitySystemComponent()->InitAbilityActorInfo(AuraPlayerState,this);
+     
+    UAuraAbilitySystemComponent* AuraAbilitySystemComponent=Cast<UAuraAbilitySystemComponent>(AuraPlayerState->GetAbilitySystemComponent());
+	AuraAbilitySystemComponent->AbilityActorInfoSet();
 	
 	//���� **����ϵͳ** �� **���Լ�** ָ��
 	AbilitySystemComponent= AuraPlayerState->GetAbilitySystemComponent();

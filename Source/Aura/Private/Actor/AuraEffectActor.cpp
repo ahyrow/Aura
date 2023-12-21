@@ -42,7 +42,7 @@ void AAuraEffectActor::ApplyEffectToTarget(AActor* ActorTarget, TSubclassOf<UGam
     //如果当前对象的效果数据 应用的是永久效果 并且 当前应用的是移除重叠
 	if(bIsInfinite && InfinitEffectRemovePolicy==EEffectRemoverPolicy::RemoveOnEndOverlap)
 	{
-		//存储该效果的句柄 来消除效果
+		//存储该效果的句柄 用来消除效果
 		ActiveEffectHandles.Add(ActiveGameplayEffectHandle,TargetASC);
 		 
 	}
