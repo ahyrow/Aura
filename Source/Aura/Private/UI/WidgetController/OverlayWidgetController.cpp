@@ -3,7 +3,6 @@
 
 #include "UI/WidgetController/OverlayWidgetController.h"
 #include <AbilitySystem/AuraAttributeSet.h>
-
 #include "AbilitySystem/AuraAbilitySystemComponent.h"
 
 void UOverlayWidgetController::BroadcastInitiaValues()
