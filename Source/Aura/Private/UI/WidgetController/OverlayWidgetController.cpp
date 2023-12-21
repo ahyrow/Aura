@@ -29,18 +29,28 @@ void UOverlayWidgetController::BindCallbacksToDependcies()
 
     UAuraAbilitySystemComponent* AuraASC=Cast<UAuraAbilitySystemComponent>(AbilitySystemComponent);
 	AuraASC->EffectAssetTags.AddLambda(
-     [](const FGameplayTagContainer& AssetTags )
+     [this](const FGameplayTagContainer& AssetTags )
      {
      	
 	for(FGameplayTag Tag : AssetTags )
 	{
-		const FString Msg = FString::Printf(TEXT("GE Tag : %s"),*Tag.ToString());
-		GEngine->AddOnScreenDebugMessage(-1,8.f,FColor::Blue,Msg);
+        //±Í«©œﬁ÷∆
+		FGameplayTag MessageTag =FGameplayTag::RequestGameplayTag(FName("Message"));
+
+	   if(Tag.MatchesTag(MessageTag))
+	   {
+            
+	   	  const FUIWidgetRow* Row = GetDataTableRowByTag<FUIWidgetRow>(MessageDataTable,Tag);
+
+	   	  if(Row!=nullptr) MessageWidgetRowSignature.Broadcast(*Row);
+	   	
+	   }
+		
 	}
 	
      }
 	);
-}
+}	
 
 void UOverlayWidgetController::HealthChanged(const FOnAttributeChangeData& Data) const
 {
