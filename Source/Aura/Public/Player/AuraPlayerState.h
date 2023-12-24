@@ -29,7 +29,7 @@ public:
 	UAttributeSet* GetAttributeSet() { return AttributeSet; };
 
 public:
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UAuraAbilitySystemComponent> AbilitySystemComponent;
 	UPROPERTY()
 	TObjectPtr<UAttributeSet> AttributeSet;
