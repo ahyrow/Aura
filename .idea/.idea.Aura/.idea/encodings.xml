@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
-    <file url="file://$PROJECT_DIR$/Source/Aura/Public/UI/WidgetController/OverlayWidgetController.h" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/Source/Aura/Private/Character/AuraCharacterBase.cpp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/AuraAttributeSet.h" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/Source/Aura/Public/Character/AuraCharacterBase.h" charset="GBK" />
     <file url="PROJECT" charset="GBK" />
   </component>
 </project>

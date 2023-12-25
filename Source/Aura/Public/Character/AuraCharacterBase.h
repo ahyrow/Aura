@@ -11,6 +11,7 @@
 class UAbilitySystemComponent;
 class UAttributeSet;
 class UAuraAttributeSet;
+class UGameplayEffect;
 
 
 UCLASS(Abstract)
@@ -43,4 +44,10 @@ public:
 	//UPROPERTY()
 	//TObjectPtr<UAuraAttributeSet> AttributeSet;
 
+protected:
+	//创建一个GameplayEffect类
+	UPROPERTY(BlueprintReadOnly,EditAnywhere,Category="Attributes")
+	TSubclassOf<UGameplayEffect> DefaultPrimaryAttributes;
+
+	void  InitializePrimaryAttributes() const;
 };

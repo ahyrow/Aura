@@ -30,7 +30,7 @@ public:
 
 public:
 	UPROPERTY(VisibleAnywhere)
-	TObjectPtr<UAuraAbilitySystemComponent> AbilitySystemComponent;
+	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent;
 	UPROPERTY()
 	TObjectPtr<UAttributeSet> AttributeSet;
 	/*UPROPERTY()
