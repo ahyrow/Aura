@@ -45,9 +45,26 @@ public:
 	//TObjectPtr<UAuraAttributeSet> AttributeSet;
 
 protected:
-	//创建一个GameplayEffect类
+	//创建一个GameplayEffect类  默认主要属性
 	UPROPERTY(BlueprintReadOnly,EditAnywhere,Category="Attributes")
 	TSubclassOf<UGameplayEffect> DefaultPrimaryAttributes;
 
+	//默认次要属性
+	UPROPERTY(BlueprintReadOnly,EditAnywhere,Category="Attributes")
+	TSubclassOf<UGameplayEffect> DefaultSecondaryAttributes;
+
+	 /*
+	 //初始化主要属性
 	void  InitializePrimaryAttributes() const;
+
+	 //初始化次要属性
+	void  InitializeSecondaryAttributes() const;
+	*/
+	
+
+	void InitializeDefaultAttributes() const;
+
+	//初始化所有属性封装成函数
+	void ApplyEffectToSelf(TSubclassOf<UGameplayEffect> GameplayEffectclass , float Level) const;
+
 };
