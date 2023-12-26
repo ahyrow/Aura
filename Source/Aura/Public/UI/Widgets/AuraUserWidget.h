@@ -22,7 +22,7 @@ protected:
 	UPROPERTY(BlueprintReadOnly)
 	TObjectPtr<UObject> WidgetController;
 protected:
-	//³õÊ¼»¯¿Ø¼şĞ§¹û
-	UFUNCTION(BlueprintImplementableEvent)  //    ÔÚÀ¶Í¼ÊµÏÖÊÂ¼ş ÔÚC++Àïµ÷ÓÃ
+	//åˆå§‹åŒ–æ§ä»¶æ•ˆæœ
+	UFUNCTION(BlueprintImplementableEvent)  //    åœ¨è“å›¾å®ç°äº‹ä»¶ åœ¨C++é‡Œè°ƒç”¨
 	void WidgetControllerSet();
 };

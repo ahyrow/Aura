@@ -43,16 +43,16 @@ class AURA_API UAuraWidgetController : public UObject
 	GENERATED_BODY()
 
 public:
-	//´´½¨³õÊ¼»¯½á¹¹Ìåº¯Êı
+	//åˆ›å»ºåˆå§‹åŒ–ç»“æ„ä½“å‡½æ•°
 	UFUNCTION(BlueprintCallable)
 	void SetWidgetControllerParms(const FWidgetControllerParms& WCParms);
 
 	virtual void BroadcastInitiaValues();
 
-	//°ó¶¨ÒÀÀµÏîµÄ»Øµ÷º¯Êı
+	//ç»‘å®šä¾èµ–é¡¹çš„å›è°ƒå‡½æ•°
 	virtual void BindCallbacksToDependcies();
 protected:
-	//Íæ¼Ò×´Ì¬
+	//ç©å®¶çŠ¶æ€
 	UPROPERTY(BlueprintReadOnly,Category = "WidgetController")
 	TObjectPtr<APlayerState> PlayerState; 
 

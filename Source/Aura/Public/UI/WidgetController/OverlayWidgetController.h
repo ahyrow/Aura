@@ -10,24 +10,24 @@
 class UAuraWidgetController;
 
 
-//¸ù¾İµÀ¾ß¶ÔÏóµÄ±êÇ© ¸øUI´«¶ÔÓ¦µÄÊı¾İÏÔÊ¾ÔÚÆÁÄ»
+//æ ¹æ®é“å…·å¯¹è±¡çš„æ ‡ç­¾ ç»™UIä¼ å¯¹åº”çš„æ•°æ®æ˜¾ç¤ºåœ¨å±å¹•
 USTRUCT(BlueprintType)
 struct FUIWidgetRow:public FTableRowBase
 {
 	GENERATED_BODY()
-	//ÓÎÏ·±êÇ©
+	//æ¸¸æˆæ ‡ç­¾
 	UPROPERTY(EditAnywhere,BlueprintReadOnly)
 	FGameplayTag MessageTag = FGameplayTag(); 
 
-	//ÎÄ×ÖĞÅÏ¢
+	//æ–‡å­—ä¿¡æ¯
 	UPROPERTY(EditAnywhere,BlueprintReadOnly)
 	FText Message = FText();
 
-	//´´½¨ÏÔÊ¾µÄ¿Ø¼ş
+	//åˆ›å»ºæ˜¾ç¤ºçš„æ§ä»¶
 	UPROPERTY(EditAnywhere,BlueprintReadOnly)
 	TSubclassOf<UAuraUserWidget> MessageWidget;
 	
-	//µÀ¾ß¶ÔÏóÍ¼Æ¬
+	//é“å…·å¯¹è±¡å›¾ç‰‡
 	UPROPERTY(EditAnywhere,BlueprintReadOnly)
 	UTexture2D* Image = nullptr ; 
 	
@@ -38,7 +38,7 @@ struct FUIWidgetRow:public FTableRowBase
  * 
  */
 
-//ÉùÃ÷¶à²¥´úÀí
+//å£°æ˜å¤šæ’­ä»£ç†
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnAttributeChangedSignature, float ,NewValue);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FMessageWidgetRowSignature,FUIWidgetRow, Row);
 
@@ -54,17 +54,17 @@ public:
 	virtual void BroadcastInitiaValues() override;
 	virtual void  BindCallbacksToDependcies() override;
 	
-	//´´½¨´úÀí
-	UPROPERTY(BlueprintAssignable, Category = "GAS|Attributes") //À¶Í¼¿É·ÖÅä
+	//åˆ›å»ºä»£ç†
+	UPROPERTY(BlueprintAssignable, Category = "GAS|Attributes") //è“å›¾å¯åˆ†é…
 	FOnAttributeChangedSignature OnHealthChanged;
 
-	UPROPERTY(BlueprintAssignable, Category = "GAS|Attributes") //À¶Í¼¿É·ÖÅä
+	UPROPERTY(BlueprintAssignable, Category = "GAS|Attributes") //è“å›¾å¯åˆ†é…
 	FOnAttributeChangedSignature OnMaxHealthChanged;
 
-	UPROPERTY(BlueprintAssignable, Category = "GAS|Attributes") //À¶Í¼¿É·ÖÅä
+	UPROPERTY(BlueprintAssignable, Category = "GAS|Attributes") //è“å›¾å¯åˆ†é…
 	FOnAttributeChangedSignature OnManaChanged;
 
-	UPROPERTY(BlueprintAssignable, Category = "GAS|Attributes") //À¶Í¼¿É·ÖÅä
+	UPROPERTY(BlueprintAssignable, Category = "GAS|Attributes") //è“å›¾å¯åˆ†é…
 	FOnAttributeChangedSignature OnMaxManaChanged;
 
 	UPROPERTY(BlueprintAssignable, Category = "GAS|Massages") 
@@ -74,7 +74,7 @@ protected:
 	UPROPERTY(EditDefaultsOnly,BlueprintReadOnly,Category="Widget Data")
     TObjectPtr<UDataTable> MessageDataTable;
 	
-	//·µ»ØÊı¾İĞĞ
+	//è¿”å›æ•°æ®è¡Œ
 	template<typename T>
 	T*  GetDataTableRowByTag(UDataTable* DataTable,FGameplayTag& Tag);
 };
@@ -82,7 +82,7 @@ protected:
 template <typename T>
 T* UOverlayWidgetController::GetDataTableRowByTag(UDataTable* DataTable, FGameplayTag& Tag)
 {
-	//·µ»Ø±íÍ·
+	//è¿”å›è¡¨å¤´
 	T* Row =DataTable->FindRow<T>(Tag.GetTagName(),TEXT(""));
 	if(Row)
 	{
