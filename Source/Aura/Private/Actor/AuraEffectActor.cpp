@@ -25,24 +25,24 @@ void AAuraEffectActor::BeginPlay()
 
 void AAuraEffectActor::ApplyEffectToTarget(AActor* ActorTarget, TSubclassOf<UGameplayEffect> GameplayEffectClass)
 {
-	//·µ»Ø´ËTargetµÄÄÜÁ¦ÏµÍ³×é¼þ
+	//è¿”å›žæ­¤Targetçš„èƒ½åŠ›ç³»ç»Ÿç»„ä»¶
 	UAbilitySystemComponent*  TargetASC =	UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(ActorTarget);
-	//Èç¹ûTargetASCÎª¿Õ return
+	//å¦‚æžœTargetASCä¸ºç©º return
     if(TargetASC == nullptr) return;
 
 	check(GameplayEffectClass);
 	FGameplayEffectContextHandle EffectContextHandle =TargetASC->MakeEffectContext();
 	EffectContextHandle.AddSourceObject(this); 
     const FGameplayEffectSpecHandle EffectSpecHandle=TargetASC->MakeOutgoingSpec(GameplayEffectClass,ActorLevel,EffectContextHandle)	;
-    //´æ´¢ Ð§¹ûÊý¾Ý
+    //å­˜å‚¨ æ•ˆæžœæ•°æ®
 	const FActiveGameplayEffectHandle ActiveGameplayEffectHandle=TargetASC->ApplyGameplayEffectSpecToSelf(*EffectSpecHandle.Data.Get());
 
-	//ÅÐ¶Ïµ±Ç°¶ÔÏóµÄÐ§¹ûÊý¾Ý  Ó¦ÓÃµÄÊÇ²»ÊÇÓÀ¾ÃÐ§¹û
+	//åˆ¤æ–­å½“å‰å¯¹è±¡çš„æ•ˆæžœæ•°æ®  åº”ç”¨çš„æ˜¯ä¸æ˜¯æ°¸ä¹…æ•ˆæžœ
 	const bool bIsInfinite= EffectSpecHandle.Data.Get()->Def.Get()->DurationPolicy == EGameplayEffectDurationType::Infinite;
-    //Èç¹ûµ±Ç°¶ÔÏóµÄÐ§¹ûÊý¾Ý Ó¦ÓÃµÄÊÇÓÀ¾ÃÐ§¹û ²¢ÇÒ µ±Ç°Ó¦ÓÃµÄÊÇÒÆ³ýÖØµþ
+    //å¦‚æžœå½“å‰å¯¹è±¡çš„æ•ˆæžœæ•°æ® åº”ç”¨çš„æ˜¯æ°¸ä¹…æ•ˆæžœ å¹¶ä¸” å½“å‰åº”ç”¨çš„æ˜¯ç§»é™¤é‡å 
 	if(bIsInfinite && InfinitEffectRemovePolicy==EEffectRemoverPolicy::RemoveOnEndOverlap)
 	{
-		//´æ´¢¸ÃÐ§¹ûµÄ¾ä±ú ÓÃÀ´Ïû³ýÐ§¹û
+		//å­˜å‚¨è¯¥æ•ˆæžœçš„å¥æŸ„ ç”¨æ¥æ¶ˆé™¤æ•ˆæžœ
 		ActiveEffectHandles.Add(ActiveGameplayEffectHandle,TargetASC);
 		 
 	}
@@ -94,7 +94,7 @@ void AAuraEffectActor::OnEndOverlap(AActor* TargetActor)
 		{
           if(TargetASC == HandlePair.Value )
           {
-          	//Èç¹ûÄÜÁ¦ÏµÍ³×é¼þÓëµ±Ç°MapÈÝÆ÷ÖÐµÄÖµÏàµÈ   Çå³ýÓÎÏ·Ð§¹û
+          	//å¦‚æžœèƒ½åŠ›ç³»ç»Ÿç»„ä»¶ä¸Žå½“å‰Mapå®¹å™¨ä¸­çš„å€¼ç›¸ç­‰   æ¸…é™¤æ¸¸æˆæ•ˆæžœ
           	TargetASC->RemoveActiveGameplayEffect(HandlePair.Key,1);
           	HandlesToRemove.Add(HandlePair.Key);
           }

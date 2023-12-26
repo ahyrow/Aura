@@ -57,14 +57,14 @@ public:
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
 	
-	//ÓÎÏ·¿ªÊ¼Ç°  ÊôĞÔÔ¤´¦Àí
+	//æ¸¸æˆå¼€å§‹å‰  å±æ€§é¢„å¤„ç†
     virtual void PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue) override;
 
-	//ÓÎÏ·¿ªÊ¼ºó ÊôĞÔ¸ü¸ÄºóĞ§¹ûÖ´ĞĞ
+	//æ¸¸æˆå¼€å§‹å å±æ€§æ›´æ”¹åæ•ˆæœæ‰§è¡Œ
 	virtual void PostGameplayEffectExecute(const FGameplayEffectModCallbackData& Data) override;
 public:
 	/*
-	 * PrimaryÀàĞÍµÄÊôĞÔ
+	 * Primaryç±»å‹çš„å±æ€§
 	 */
 	UPROPERTY(BlueprintReadOnly,ReplicatedUsing=OnRep_Strength,Category="Primary Attributes")
 	FGameplayAttributeData Strength;
@@ -80,11 +80,11 @@ public:
 //Vigor
 	UPROPERTY(BlueprintReadOnly,ReplicatedUsing=OnRep_Vigor,Category="Primary Attributes")
 	FGameplayAttributeData Vigor;
-	ATTRIBUTE_ACCESSORS(UAuraAttributeSet,Vigor);
+	ATTRIBUTE_ACCESSORS(UAuraAttributeSet,Vigor);  /* å±æ€§è®¿é—®å™¨å®   ç›¸å½“äºGetVigorAttribute()*/
 
 
 /*
- * Secondary Attributes  ´ÎÒªÊôĞÔ
+ * Secondary Attributes  æ¬¡è¦å±æ€§
  */
 
 	UPROPERTY(BlueprintReadOnly,ReplicatedUsing=OnRep_Armor,Category="Secondary Attributes")
@@ -131,7 +131,7 @@ public:
 
 	
 	/*
-	 *    VitalÀàĞÍµÄÊôĞÔ
+	 *    Vitalç±»å‹çš„å±æ€§
 	 */
 	
 
@@ -147,14 +147,14 @@ public:
 
 
 public:
-	//ÉúÃü/Ä§·¨ÊôĞÔ
+	//ç”Ÿå‘½/é­”æ³•å±æ€§
 	UFUNCTION()
 	void OnRep_Health(const FGameplayAttributeData& OldHealth) const;
 	UFUNCTION()
 	void OnRep_Mana(const FGameplayAttributeData& OldMana) const;
 
 
-	//´ÎÒªÊôĞÔ
+	//æ¬¡è¦å±æ€§
 	UFUNCTION()
 	void OnRep_Armor(const FGameplayAttributeData& OldArmor) const;
 	UFUNCTION()
@@ -178,7 +178,7 @@ public:
 
 
 	
-   //Ö÷ÒªÊôĞÔ
+   //ä¸»è¦å±æ€§
 	UFUNCTION()
 	void OnRep_Strength(const FGameplayAttributeData& OldStrength) const;
 	UFUNCTION()

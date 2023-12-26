@@ -10,8 +10,8 @@
 
 UAuraAttributeSet::UAuraAttributeSet()
 {
-	InitHealth(50.f);
-	InitMana(50.f);
+	//InitHealth(50.f);
+	//InitMana(50.f);
 	//InitMaxMana(100.f);
 	//InitMaxHealth(100.f);
 
@@ -63,7 +63,7 @@ void UAuraAttributeSet::PreAttributeChange(const FGameplayAttribute& Attribute, 
 
 void UAuraAttributeSet::SetEffectProperties(const FGameplayEffectModCallbackData& Data, FEffectProperties& Props) const
 {
-	//拿到源的能力系统组件
+	//鎷垮埌婧愮殑鑳藉姏绯荤粺缁勪欢
 	Props.EffectContextHandle = Data.EffectSpec.GetContext();
 	
 	Props.SourceASC =Props.EffectContextHandle.GetOriginalInstigatorAbilitySystemComponent();
