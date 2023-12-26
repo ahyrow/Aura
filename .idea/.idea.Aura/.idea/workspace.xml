@@ -10,20 +10,7 @@
     <list default="true" id="780f91ee-ee74-48dd-858e-6b8c41afe602" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/AbilitySystem/GameplayEffects/DefaultAttributes/GE_AuraPrimaryAttribute.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/AbilitySystem/GameplayEffects/DefaultAttributes/GE_AuraPrimaryAttribute.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/AbilitySystem/GameplayEffects/DefaultAttributes/GE_AuraSecondaryAttributes.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/AbilitySystem/GameplayEffects/DefaultAttributes/GE_AuraSecondaryAttributes.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Character/Aura/BP_AuraCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Character/Aura/BP_AuraCharacter.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAttributeSet.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAttributeSet.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Actor/AuraEffectActor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Actor/AuraEffectActor.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Character/AuraCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Character/AuraCharacter.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Character/AuraCharacterBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Character/AuraCharacterBase.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Character/AuraEnemy.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Character/AuraEnemy.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Player/AuraPlayerState.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Player/AuraPlayerState.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/AuraAttributeSet.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/AuraAttributeSet.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Character/AuraCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Character/AuraCharacter.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Character/AuraCharacterBase.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Character/AuraCharacterBase.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Character/AuraEnemy.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Character/AuraEnemy.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Player/AuraPlayerState.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Player/AuraPlayerState.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemComponent.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,7 +143,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1703568958727</updated>
-      <workItem from="1703568960269" duration="8053000" />
+      <workItem from="1703568960269" duration="9718000" />
     </task>
     <servers />
   </component>

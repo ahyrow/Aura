@@ -18,7 +18,7 @@ void UAuraAbilitySystemComponent::EffectApplied
     FGameplayTagContainer TagContainer;
     EffectSpec.GetAllAssetTags(TagContainer);
 
-	//°ó¶¨±êÇ©ÈÝÆ÷
+	//ç»‘å®šæ ‡ç­¾å®¹å™¨
 	EffectAssetTags.Broadcast(TagContainer);
 	
 }
