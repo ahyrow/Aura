@@ -15,7 +15,7 @@ void AAuraHUD::BeginPlay()
 
 }
 
-void AAuraHUD::KOInitOverlay(APlayerController* PC, APlayerState* PS,
+void AAuraHUD::InitOverlay(APlayerController* PC, APlayerState* PS,
 	UAbilitySystemComponent* ASC, UAttributeSet* AS)
 {
 	 //检查并打印日志
