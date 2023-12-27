@@ -10,5 +10,7 @@ void UAttributeMenuWidgetController::BindCallbacksToDependcies()
 
 void UAttributeMenuWidgetController::BroadcastInitiaValues()
 {
+    //绑定在AuraInfo中的属性结构
+
 	
 }

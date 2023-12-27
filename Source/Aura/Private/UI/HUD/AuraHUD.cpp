@@ -3,6 +3,7 @@
 
 #include "UI/HUD/AuraHUD.h"
 #include "Blueprint/UserWidget.h"
+#include "UI/WidgetController/AttributeMenuWidgetController.h"
 #include "UI/WidgetController/AuraWidgetController.h"
 #include "UI/WidgetController/OverlayWidgetController.h"
 #include "UI/Widgets/AuraUserWidget.h"
@@ -14,7 +15,7 @@ void AAuraHUD::BeginPlay()
 
 }
 
-void AAuraHUD::InitOverlay(APlayerController* PC, APlayerState* PS,
+void AAuraHUD::KOInitOverlay(APlayerController* PC, APlayerState* PS,
 	UAbilitySystemComponent* ASC, UAttributeSet* AS)
 {
 	 //检查并打印日志
@@ -54,4 +55,18 @@ UOverlayWidgetController* AAuraHUD::GetOverlayWidgetController(const FWidgetCont
   
 	
 	return OverlayWidgetController;
+}
+
+UAttributeMenuWidgetController* AAuraHUD::GetAttributeMenuWidgetController(const FWidgetControllerParms& WSParams)
+{
+   if(AttributeMenuWidgetController == nullptr)
+   {
+     AttributeMenuWidgetController=NewObject<UAttributeMenuWidgetController>(this,AttributeMenuWidgetControllerClass);
+
+   	 AttributeMenuWidgetController->SetWidgetControllerParms(WSParams);
+
+   	AttributeMenuWidgetController->BindCallbacksToDependcies();
+   }
+
+	return AttributeMenuWidgetController;
 }
