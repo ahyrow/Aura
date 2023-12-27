@@ -56,8 +56,8 @@ void UOverlayWidgetController::BindCallbacksToDependcies()
      	
 	for(FGameplayTag Tag : AssetTags )
 	{
-        //标签限制
-		FGameplayTag MessageTag =FGameplayTag::RequestGameplayTag(FName("Message"));
+        //请求标签标记
+  		FGameplayTag MessageTag =FGameplayTag::RequestGameplayTag(FName("Message"));
  
 	   if(Tag.MatchesTag(MessageTag))
 	   {
