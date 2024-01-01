@@ -64,7 +64,7 @@ public:
 	virtual void PostGameplayEffectExecute(const FGameplayEffectModCallbackData& Data) override;
 public:
 	/*
-	 * Primary类型的属性
+	 * Primary类型的属性   
 	 */
 	UPROPERTY(BlueprintReadOnly,ReplicatedUsing=OnRep_Strength,Category="Primary Attributes")
 	FGameplayAttributeData Strength;

@@ -47,6 +47,7 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void SetWidgetControllerParms(const FWidgetControllerParms& WCParms);
 
+	UFUNCTION(BlueprintCallable)
 	virtual void BroadcastInitiaValues();
 
 	//绑定依赖项的回调函数
