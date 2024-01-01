@@ -15,6 +15,8 @@ GAMEPLAYATTRIBUTE_VALUE_GETTER(PropertyName) \
 GAMEPLAYATTRIBUTE_VALUE_SETTER(PropertyName) \
 GAMEPLAYATTRIBUTE_VALUE_INITTER(PropertyName)
 
+
+//DECLARE_DELEGATE_RetVal(FGameplayAttribute,FAttributeSetSignature);
 USTRUCT()
 struct FEffectProperties
 {
@@ -42,6 +44,9 @@ struct FEffectProperties
 	ACharacter* TargetCharacter = nullptr;
 };
 
+//typedef TBaseStaticDelegateInstance<FGameplayAttribute(),FDefaultDelegateUserPolicy>::FFuncPtr FAttributeFuncPtr;
+template<class T>
+using TStaticFuncPtr =typename  TBaseStaticDelegateInstance<T,FDefaultDelegateUserPolicy>::FFuncPtr;
 /**
  * 
  */
@@ -59,10 +64,18 @@ public:
 	
 	//游戏开始前  属性预处理
     virtual void PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue) override;
-
+ 
 	//游戏开始后 属性更改后效果执行
 	virtual void PostGameplayEffectExecute(const FGameplayEffectModCallbackData& Data) override;
 public:
+	//创建一个Map容器 使用一个标签对应一个属性值(使用函数指针来返回值FGameplayAttribute(*)())
+    TMap<FGameplayTag, TStaticFuncPtr<FGameplayAttribute()>> TagsToAttribute;
+
+	//TBaseStaticDelegateInstance<FGameplayAttribute(),FDefaultDelegateUserPolicy>::FFuncPtr FunctionPointer;
+	
+
+
+	
 	/*
 	 * Primary类型的属性   
 	 */
