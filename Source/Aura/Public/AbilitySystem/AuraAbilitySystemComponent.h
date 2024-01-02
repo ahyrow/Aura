@@ -22,6 +22,9 @@ public:
 	//添加游戏能力
 	void AddCharacterAbilities(const TArray<TSubclassOf<UGameplayAbility>>&  StarupAbilities);
 
+	void AbilityInputTagHeld(const FGameplayTag& InputTag);
+	void AbilityInputTagReleased(const FGameplayTag& InputTag);
+
 public:
 
 	FEffectAssetTags EffectAssetTags;

@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ // Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "AbilitySystem/AuraAbilitySystemComponent.h"
@@ -40,7 +40,45 @@ void UAuraAbilitySystemComponent::AddCharacterAbilities(const TArray<TSubclassOf
 	
 }
 
-void UAuraAbilitySystemComponent::EffectApplied
+ void UAuraAbilitySystemComponent::AbilityInputTagHeld(const FGameplayTag& InputTag)
+ {
+	if(!InputTag.IsValid()) return;
+    //获得可激活的能力
+	for(auto & AbilitySpec : GetActivatableAbilities())
+	{
+		//检查标签是否匹配
+		if(AbilitySpec.DynamicAbilityTags.HasTagExact(InputTag))
+		{
+			AbilitySpecInputPressed(AbilitySpec);
+			//如果没有激活
+			if(!AbilitySpec.IsActive())
+			{
+				//激活
+				TryActivateAbility(AbilitySpec.Handle);
+				
+			}
+			
+		}
+	}
+  }
+
+ void UAuraAbilitySystemComponent::AbilityInputTagReleased(const FGameplayTag& InputTag)
+ {
+	//输入标签是否有效
+	if(!InputTag.IsValid()) return;
+	//获得可激活的能力
+	for(auto & AbilitySpec : GetActivatableAbilities())
+	{
+		//检查标签是否匹配
+		if(AbilitySpec.DynamicAbilityTags.HasTagExact(InputTag))
+		{
+			//能力spec输入已按下 输入被释放
+			AbilitySpecInputReleased(AbilitySpec);
+		}
+	}
+ }
+
+ void UAuraAbilitySystemComponent::EffectApplied
 (UAbilitySystemComponent* AbilitySystemComponent,
  const FGameplayEffectSpec& EffectSpec,
  FActiveGameplayEffectHandle ActiveEffectHandle)

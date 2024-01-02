@@ -2,8 +2,11 @@
 
 
 #include "Player/AuraPlayerController.h"
+
+#include "AbilitySystemBlueprintLibrary.h"
 #include "EnhancedInputSubsystems.h"
 #include "GameplayTagContainer.h"
+#include "AbilitySystem/AuraAbilitySystemComponent.h"
 #include "Input/AuraEnhancedInputComponent.h"
 
 
@@ -17,10 +20,10 @@ AAuraPlayerController::AAuraPlayerController()
 void AAuraPlayerController::BeginPlay()
 {
 	Super::BeginPlay();
-	//¼ì²éAuraContextÊÇ·ñÓĞĞ§
+	//æ£€æŸ¥AuraContextæ˜¯å¦æœ‰æ•ˆ
 	check(AuraContext);
 
-	//ÉèÖÃÔöÇ¿Íæ¼ÒÊäÈë×ÓÏµÍ³
+	//è®¾ç½®å¢å¼ºç©å®¶è¾“å…¥å­ç³»ç»Ÿ
 	UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer());
 	//check(Subsystem);
 	if(Subsystem)
@@ -29,11 +32,11 @@ void AAuraPlayerController::BeginPlay()
 
 	}
 
-	//ÉèÖÃÊó±êÏÔÊ¾ ¼° ³£¹æÑùÊ½
+	//è®¾ç½®é¼ æ ‡æ˜¾ç¤º åŠ å¸¸è§„æ ·å¼
 	bShowMouseCursor = true;
 	DefaultMouseCursor = EMouseCursor::Default;
 
-	//ÉèÖÃÊäÈëÄ£Ê½£¨£©
+	//è®¾ç½®è¾“å…¥æ¨¡å¼ï¼ˆï¼‰
 	FInputModeGameAndUI InputModeData;
 	InputModeData.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
 	InputModeData.SetHideCursorDuringCapture(false);
@@ -51,7 +54,7 @@ void AAuraPlayerController::SetupInputComponent()
 	Super::SetupInputComponent();
 	UEnhancedInputComponent* EnhancedInputComponent = CastChecked<UEnhancedInputComponent>(InputComponent);
 
-	/* ĞŞ¸ÄÎª×Ô¼ºµÄÔöÇ¿ÊäÈë×é¼ş */
+	/* ä¿®æ”¹ä¸ºè‡ªå·±çš„å¢å¼ºè¾“å…¥ç»„ä»¶ */
 	//EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AAuraPlayerController::Move);
 	UAuraEnhancedInputComponent* AuraEnhancedInputComponent = CastChecked<UAuraEnhancedInputComponent>(EnhancedInputComponent);
 	AuraEnhancedInputComponent->BindAction(MoveAction,ETriggerEvent::Triggered,this,&AAuraPlayerController::Move);
@@ -83,21 +86,35 @@ void AAuraPlayerController::Move(const FInputActionValue& InputActionValue)
 
 void AAuraPlayerController::AbilityInputTagPressed(FGameplayTag InputTag)
 {
-
-	GEngine->AddOnScreenDebugMessage(1,3.f,FColor::Blue,*InputTag.ToString());
+	//GEngine->AddOnScreenDebugMessage(1,3.f,FColor::Blue,*InputTag.ToString());
+	
 }
 
 void AAuraPlayerController::AbilityInputTagReleased(FGameplayTag InputTag)
 {
-
-	GEngine->AddOnScreenDebugMessage(2,3.f,FColor::Red,*InputTag.ToString());
+	//GEngine->AddOnScreenDebugMessage(2,3.f,FColor::Red,*InputTag.ToString());
+	if(GetASC()==nullptr) return;
+	GetASC()->AbilityInputTagReleased(InputTag);
 }
 
 void AAuraPlayerController::AbilityInputTagHeld(FGameplayTag InputTag)
 {
 
-	GEngine->AddOnScreenDebugMessage(3,3.f,FColor::Orange,*InputTag.ToString());
-	
+	//GEngine->AddOnScreenDebugMessage(3,3.f,FColor::Orange,*InputTag.ToString());
+	if(GetASC()==nullptr) return;
+	GetASC()->AbilityInputTagHeld(InputTag);
+}
+
+UAuraAbilitySystemComponent* AAuraPlayerController::GetASC()
+{
+	if(AuraAbilitySystemComponent==nullptr)
+	{
+		  AuraAbilitySystemComponent=Cast<UAuraAbilitySystemComponent>
+		(UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(GetPawn<APawn>()));
+		
+	}
+
+	return  AuraAbilitySystemComponent;
 }
 
 void AAuraPlayerController::CursirTrace()
@@ -113,18 +130,18 @@ void AAuraPlayerController::CursirTrace()
 	LastActor = ThisActor;
  	ThisActor=Cast<IEnemyInterface>(CursirHit.GetActor());
 /*
-* Êó±ê²¶×½»áÓĞÒÔÏÂ¼¸ÖÖÇé¿ö
-* A.ÉÏÒ»¸ö(LastActor)¶ÔÏóºÍµ±Ç°(thisActor)¶ÔÏóÎª¿Õ
+* é¼ æ ‡æ•æ‰ä¼šæœ‰ä»¥ä¸‹å‡ ç§æƒ…å†µ
+* A.ä¸Šä¸€ä¸ª(LastActor)å¯¹è±¡å’Œå½“å‰(thisActor)å¯¹è±¡ä¸ºç©º
 *   Do nothing
 * 
-* B.ÉÏÒ»¸ö(LastActor)¶ÔÏóÎª¿Õ£¬µ±Ç°(ThisActor)¶ÔÏóÓĞĞ§
+* B.ä¸Šä¸€ä¸ª(LastActor)å¯¹è±¡ä¸ºç©ºï¼Œå½“å‰(ThisActor)å¯¹è±¡æœ‰æ•ˆ
 *   ThisActor Highlight
-* C.ÉÏÒ»¸ö(LastActor)¶ÔÏóÓĞĞ§£¬µ±Ç°(ThisActor)¶ÔÏóÎª¿Õ
+* C.ä¸Šä¸€ä¸ª(LastActor)å¯¹è±¡æœ‰æ•ˆï¼Œå½“å‰(ThisActor)å¯¹è±¡ä¸ºç©º
 *   UnHightlight LastActor
-* D.ÉÏÒ»¸ö(LastActor)¶ÔÏóºÍµ±Ç°(ThisActor)¶ÔÏó¶¼ÓĞĞ§
+* D.ä¸Šä¸€ä¸ª(LastActor)å¯¹è±¡å’Œå½“å‰(ThisActor)å¯¹è±¡éƒ½æœ‰æ•ˆ
 *    LastActor UnHightlight / ThisActor Hightlight
 * 
-* E.ÉÏÒ»¸ö(LastActor)¶ÔÏóºÍµ±Ç°(ThisActor)¶ÔÏóÏàµÈ,²¢ÇÒÊÇÍ¬Ò»¸ö¶ÔÏó
+* E.ä¸Šä¸€ä¸ª(LastActor)å¯¹è±¡å’Œå½“å‰(ThisActor)å¯¹è±¡ç›¸ç­‰,å¹¶ä¸”æ˜¯åŒä¸€ä¸ªå¯¹è±¡
 *   Do nothing 
 */
 	if(LastActor==nullptr)
