@@ -2,14 +2,32 @@
 
 
 #include "UI/WidgetController/AttributeMenuWidgetController.h"
-
 #include "AuraGameplayTags.h"
 #include "AbilitySystem/AuraAttributeSet.h"
 #include "AbilitySystem/Data/AttributeInfo.h"
+#include "Chaos/Pair.h"
 
 void UAttributeMenuWidgetController::BindCallbacksToDependcies()
 {
-	
+	UAuraAttributeSet* AS = Cast<UAuraAttributeSet>(AttributeSet);
+	check(AttributeInfo);
+	//GetGameplayAttributeValueChangeDelegate()  当属性发生变化时调用的API 返回的是回调函数
+	for(auto& Pair : AS->TagsToAttribute )
+	{
+		//获得Map容器里得Key
+		AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(Pair.Value()).AddLambda(
+	[this,Pair,AS](const FOnAttributeChangeData& Data)
+	{
+       /*
+        //获取属性信息
+		FAuraAttributeInfo Info = AttributeInfo->FindAttributeInforTag(Pair.Key);
+		Info.AttributeValue = Pair.Value().GetNumericValue(AS);
+		//进行广播
+		AttributeInfoDelegate.Broadcast(Info);*/
+		BroadcastAttributeInfo(Pair.Key,Pair.Value());
+	}
+	);
+	}
 }
 
 void UAttributeMenuWidgetController::BroadcastInitiaValues()
@@ -23,13 +41,16 @@ void UAttributeMenuWidgetController::BroadcastInitiaValues()
 	//遍历AS中的Map容器
 	for(auto&  Pair : AS->TagsToAttribute)
 	{
+		/*
 		//查找出标签
         FAuraAttributeInfo Info = AttributeInfo->FindAttributeInforTag(Pair.Key);
 		//FGameplayAttribute Attr = Pair.Value.Execute();
 		//获得标签对应的值
 		Info.AttributeValue = Pair.Value().GetNumericValue(AS);
 		//进行广播
-	  	AttributeInfoDelegate.Broadcast(Info);
+	  	AttributeInfoDelegate.Broadcast(Info);*/
+
+		BroadcastAttributeInfo(Pair.Key,Pair.Value());
 	}
 	/*
 	 //调用数据资产信息类中的查找标签函数 会返回一个信息的结构体 
@@ -39,4 +60,15 @@ void UAttributeMenuWidgetController::BroadcastInitiaValues()
 	//进行广播
 	AttributeInfoDelegate.Broadcast(StrengthInfo);
 	*/
+}
+
+void UAttributeMenuWidgetController::BroadcastAttributeInfo(const FGameplayTag& AttributeTag,
+	const FGameplayAttribute& Attribute) const
+{
+	FAuraAttributeInfo Info = AttributeInfo->FindAttributeInforTag(AttributeTag);
+	//FGameplayAttribute Attr = Pair.Value.Execute();
+	//获得标签对应的值
+	Info.AttributeValue = Attribute.GetNumericValue(AttributeSet);
+	//进行广播
+	AttributeInfoDelegate.Broadcast(Info);
 }

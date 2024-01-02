@@ -8,6 +8,9 @@
 #include "AuraPlayerController.generated.h"
 
 
+struct FGameplayTag;
+class UAuraInputConfig;
+class UAuraEnhancedInputComponent;
 class IEnemyInterface;
 class UInputAction;
 class UInputMappingContext;
@@ -42,14 +45,24 @@ private:
 	UPROPERTY(EditAnywhere,Category="Input")
 	TObjectPtr<UInputAction> MoveAction;
 private:
-	//�ص�����
+	//回调函数
 	void Move(const FInputActionValue& InputActionValue);
 	     
 	//TObjectPtr<IEnemyInterface> LastActor;
 	IEnemyInterface* LastActor;
 	//TObjectPtr<IEnemyInterface> ThisActor;
-
 	IEnemyInterface* ThisActor;
 
+
+	/* 按键的回调函数 */
+	//按下
+   void AbilityInputTagPressed(FGameplayTag InputTag);
+	//松开
+	void AbilityInputTagReleased(FGameplayTag InputTag);
+	//按住
+	void AbilityInputTagHeld(FGameplayTag InputTag);
+	
+    UPROPERTY(EditDefaultsOnly,Category="Input")
+	TObjectPtr<UAuraInputConfig> InputConfig;
 
 };

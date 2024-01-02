@@ -27,11 +27,11 @@ AAuraCharacter::AAuraCharacter()
 void AAuraCharacter::PossessedBy(AController* NewController)
 {
 	 Super::PossessedBy(NewController);
-	 
+	//初始化能力对象信息
 	InitAbilityActorInfo();
-
-
-}
+    //增加角色能力
+	AddCharacterAbilities();
+}  
 
 
 void AAuraCharacter::OnRep_PlayerState()
