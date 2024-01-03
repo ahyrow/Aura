@@ -32,6 +32,12 @@ void AAuraCharacterBase::InitAbilityActorInfo()
 {
 }
 
+FVector AAuraCharacterBase::GetCombatSocketLocation()
+{
+	//根据武器插槽名称获得插槽位置
+	return Weapon->GetSocketLocation(WeaponTipSocketName);
+}
+
 
 void AAuraCharacterBase::InitializeDefaultAttributes() const
 {

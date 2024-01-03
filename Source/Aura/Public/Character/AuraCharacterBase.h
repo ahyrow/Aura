@@ -35,8 +35,14 @@ protected:
 	
 
 public:
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere,Category="Combat")
 	TObjectPtr<USkeletalMeshComponent> Weapon;
+
+	UPROPERTY(EditAnywhere,Category="Combat")
+	//武器插槽名称
+	FName WeaponTipSocketName;
+	//实现战斗接口函数
+	virtual FVector GetCombatSocketLocation() override; 
 
     UPROPERTY()
 	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent;
@@ -63,6 +69,8 @@ protected:
 	 //��ʼ����Ҫ����
 	void  InitializeSecondaryAttributes() const;
 	*/
+	
+
 	
 
 	void InitializeDefaultAttributes() const;
