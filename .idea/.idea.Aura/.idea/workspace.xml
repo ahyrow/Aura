@@ -7,11 +7,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba6395d9-b2c0-49fd-9fe1-36856d284f79" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura/.idea/encodings.xml" afterDir="false" />
+    <list default="true" id="ae6dfa22-a412-4efe-98a2-4f43c9d5298c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura/.idea/encodings.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Dungeon/SM_Tile_3x3_A.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Dungeon/SM_Tile_3x3_A.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Dungeon/SM_Tile_3x3_B.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Dungeon/SM_Tile_3x3_B.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Blueprints/AbilitySystem/GameplayAbilities/GA_TestGameplayAbilities.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/AbilitySystem/GameplayAbilities/GA_TestGameplayAbilities.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Platforms/HoloLens/Config/HoloLensEngine.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Actor/BP_HealthPotion.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Actor/Potion/BP_HealthCrvstal.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Actor/Potion/BP_ManaCrvstal.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Character/Aura/BP_AuraCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Character/Aura/BP_AuraCharacter.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/UI/AttributeMenu/WBP_AttributeMenu.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/UI/AttributeMenu/WBP_AttributeMenu.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/UI/AttributeMenu/WBP_TextValueRow.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/UI/AttributeMenu/WBP_TextValueRow.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Maps/StartupMap.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Maps/StartupMap.umap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Aura.Build.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Aura.Build.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemComponent.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Player/AuraPlayerController.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Player/AuraPlayerController.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/AuraAbilitySystemComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/AuraAbilitySystemComponent.h" afterDir="false" />
@@ -25,6 +35,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="cidr-memory-view://3" root0="SKIP_HIGHLIGHTING" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -32,7 +45,7 @@
   "customColor": "",
   "associatedIndex": 0
 }]]></component>
-  <component name="ProjectId" id="2aOaUtl7JpwZU3016iH5PqJ88IC" />
+  <component name="ProjectId" id="2aRCVSMJF1X1gLGDQLpYgCtda1h" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -42,20 +55,20 @@
     "C++ Project.Aura.executor": "Debug",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "ezargs.lastUsed": "",
     "git-widget-placeholder": "master",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
     "rider.external.source.directories": [
-      "C:\\Users\\Administrator\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\DecompilerCache",
-      "C:\\Users\\Administrator\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\SourcesCache",
-      "C:\\Users\\Administrator\\AppData\\Local\\Symbols\\src"
+      "C:\\Users\\64461\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\DecompilerCache",
+      "C:\\Users\\64461\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\SourcesCache",
+      "C:\\Users\\64461\\AppData\\Local\\Symbols\\src"
     ]
   }
 }]]></component>
@@ -125,12 +138,12 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="ba6395d9-b2c0-49fd-9fe1-36856d284f79" name="Changes" comment="" />
-      <created>1704192098147</created>
+      <changelist id="ae6dfa22-a412-4efe-98a2-4f43c9d5298c" name="Changes" comment="" />
+      <created>1704272028964</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1704192098147</updated>
-      <workItem from="1704192100062" duration="8345000" />
+      <updated>1704272028964</updated>
+      <workItem from="1704272030485" duration="3454000" />
     </task>
     <servers />
   </component>

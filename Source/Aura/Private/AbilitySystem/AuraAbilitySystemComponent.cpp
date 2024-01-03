@@ -8,14 +8,14 @@
 void UAuraAbilitySystemComponent::AbilityActorInfoSet()
 {
 
-	OnGameplayEffectAppliedDelegateToSelf.AddUObject(this,&UAuraAbilitySystemComponent::EffectApplied);
+	OnGameplayEffectAppliedDelegateToSelf.AddUObject(this,&UAuraAbilitySystemComponent::ClientEffectApplied);
 
 	 //拿到单例
 	 const  FAuraGameplayTags& GameplayTags = FAuraGameplayTags::Get();
 	// 打印测试访问
 	// GameplayTags.Attributes_Secondary_Armor.ToString();
-	 GEngine->AddOnScreenDebugMessage(-1,10.f,FColor::Orange,FString::Printf(TEXT("Tag: %s"),
-		*GameplayTags.Attributes_Secondary_Armor.ToString()));
+	 /*GEngine->AddOnScreenDebugMessage(-1,10.f,FColor::Orange,FString::Printf(TEXT("Tag: %s"),
+		*GameplayTags.Attributes_Secondary_Armor.ToString()));*/
 }
 
 void UAuraAbilitySystemComponent::AddCharacterAbilities(const TArray<TSubclassOf<UGameplayAbility>>& StarupAbilities)
@@ -78,7 +78,7 @@ void UAuraAbilitySystemComponent::AddCharacterAbilities(const TArray<TSubclassOf
 	}
  }
 
- void UAuraAbilitySystemComponent::EffectApplied
+ void UAuraAbilitySystemComponent::ClientEffectApplied_Implementation
 (UAbilitySystemComponent* AbilitySystemComponent,
  const FGameplayEffectSpec& EffectSpec,
  FActiveGameplayEffectHandle ActiveEffectHandle)

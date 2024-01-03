@@ -31,5 +31,6 @@ public:
 protected:
 	//回调函数  被调用来响应应用于这个 能力系统组件的任何效果
     //效果应用
-	void EffectApplied(UAbilitySystemComponent* AbilitySystemComponent, const FGameplayEffectSpec& EffectSpec, FActiveGameplayEffectHandle ActiveEffectHandle);
+	UFUNCTION(Client,Reliable)
+	void ClientEffectApplied(UAbilitySystemComponent* AbilitySystemComponent, const FGameplayEffectSpec& EffectSpec, FActiveGameplayEffectHandle ActiveEffectHandle);
 }; 

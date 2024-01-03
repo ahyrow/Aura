@@ -8,13 +8,13 @@
 #include "AuraPlayerController.generated.h"
 
 
-struct FGameplayTag;
+class USplineComponent;
 class UAuraInputConfig;
-class UAuraEnhancedInputComponent;
 class IEnemyInterface;
 class UInputAction;
 class UInputMappingContext;
 class UAuraAbilitySystemComponent;
+struct FGameplayTag;
 struct FInputActionValue;
 
 
@@ -30,6 +30,8 @@ class AURA_API AAuraPlayerController : public APlayerController
 	
 public:
 	AAuraPlayerController();
+
+
 protected:
 	virtual void BeginPlay() override;
 	
@@ -37,24 +39,23 @@ protected:
 	  
     virtual void SetupInputComponent() override;
 
-
+    /* 鼠标检测 */
 	void CursirTrace();
+	FHitResult CursirHit;
 private:
 	UPROPERTY(EditAnywhere,Category="Input")
 	TObjectPtr<UInputMappingContext> AuraContext;
 
 	UPROPERTY(EditAnywhere,Category="Input")
 	TObjectPtr<UInputAction> MoveAction;
+
+	UPROPERTY(EditDefaultsOnly,Category="Input")
+	TObjectPtr<UAuraInputConfig> InputConfig;
 private:
-	//回调函数
+	
+	//移动回调函数
 	void Move(const FInputActionValue& InputActionValue);
-	     
-	//TObjectPtr<IEnemyInterface> LastActor;
-	IEnemyInterface* LastActor;
-	//TObjectPtr<IEnemyInterface> ThisActor;
-	IEnemyInterface* ThisActor;
-
-
+	
 	/* 按键的回调函数 */
 	//按下
    void AbilityInputTagPressed(FGameplayTag InputTag);
@@ -62,12 +63,46 @@ private:
 	void AbilityInputTagReleased(FGameplayTag InputTag);
 	//按住
 	void AbilityInputTagHeld(FGameplayTag InputTag);
-	
-    UPROPERTY(EditDefaultsOnly,Category="Input")
-	TObjectPtr<UAuraInputConfig> InputConfig;
 
+	//自动运行
+	void AutoRun();
+private:
+
+	
+	FVector CacheDestination = FVector::Zero();
+	
+	float FollowTime = 0.f;
+	
+	float ShortPressThreshold = 0.5f;
+	
+	bool bAutoRunning = false;
+
+	bool bTargeting = false;
+
+	//半径浮点数
+	UPROPERTY(EditDefaultsOnly)
+	float AutoRunAcceptanceRadius= 50.f;
+	
+
+    UPROPERTY(VisibleAnywhere)
+    TObjectPtr<USplineComponent> Spline;
+
+	
+private:
+
+	//拿到AuraASC指针
 	UPROPERTY()
 	TObjectPtr<UAuraAbilitySystemComponent> AuraAbilitySystemComponent;
 
 	UAuraAbilitySystemComponent* GetASC();
+
+
+
+private:
+	/*  鼠标捕捉AI亮边   */
+	//TObjectPtr<IEnemyInterface> LastActor;
+	IEnemyInterface* LastActor;
+	//TObjectPtr<IEnemyInterface> ThisActor;
+	IEnemyInterface* ThisActor;
+	
 };
