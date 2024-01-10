@@ -22,6 +22,10 @@ protected:
 		const FGameplayAbilityActivationInfo ActivationInfo, const FGameplayEventData* TriggerEventData) override;
 
 
+	//生成Projectile函数
+	UFUNCTION(BlueprintCallable,Category="Projectile")
+	void SpawnProjectile();
+	
 
 	UPROPERTY(EditAnywhere,BlueprintReadOnly)
 	TSubclassOf<AAuraProjectile> ProjectileClass;

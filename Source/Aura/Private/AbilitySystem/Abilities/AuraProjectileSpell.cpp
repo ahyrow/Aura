@@ -13,13 +13,20 @@ void UAuraProjectileSpell::ActivateAbility(const FGameplayAbilitySpecHandle Hand
 {
 	Super::ActivateAbility(Handle, ActorInfo, ActivationInfo, TriggerEventData);
 
+	
+	
+}
+
+void UAuraProjectileSpell::SpawnProjectile()
+{
+	
 	//如果是服务器的话返回true
-    const bool bIsServer=HasAuthority(&ActivationInfo);
+	const bool bIsServer=GetAvatarActorFromActorInfo()->HasAuthority();
 	//如果不在服务器  return
 	if(!bIsServer) return;
 
 	//根据拥有这类能力的Character  拿到战斗接口     
-    ICombatInterface* CombatInterface = Cast<ICombatInterface>(GetAvatarActorFromActorInfo());
+	ICombatInterface* CombatInterface = Cast<ICombatInterface>(GetAvatarActorFromActorInfo());
 	if(CombatInterface)
 	{
 		//拿到武器插槽位置
@@ -37,5 +44,4 @@ void UAuraProjectileSpell::ActivateAbility(const FGameplayAbilitySpecHandle Hand
 
 		Projectile->FinishSpawning(SpawnTransform);
 	}
-	
 }
