@@ -261,6 +261,7 @@ void AAuraPlayerController::CursirTrace()
 * E.上一个(LastActor)对象和当前(ThisActor)对象相等,并且是同一个对象
 *   Do nothing 
 */
+	/*
 	if(LastActor==nullptr)
 	{
 	  if(ThisActor!=nullptr)
@@ -300,6 +301,7 @@ void AAuraPlayerController::CursirTrace()
 			
 		}
 	}
+	*/
 
 
 }
