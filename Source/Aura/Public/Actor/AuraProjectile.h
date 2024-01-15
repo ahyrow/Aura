@@ -8,6 +8,8 @@
 
 class UProjectileMovementComponent;
 class USphereComponent;
+class UNiagaraSystem;
+class UAudioComponent;
 
 UCLASS()
 class AURA_API AAuraProjectile : public AActor
@@ -24,13 +26,37 @@ protected:
 	
 	virtual void BeginPlay() override;
 
+	virtual void Destroyed() override;
+
 	//球体的重叠事件
 	UFUNCTION()
 	void OnSphereOverlap
 	(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
    
 private:
+
+	UPROPERTY(EditDefaultsOnly)
+	float LifeSPan = 15.f;
+
+	//是否碰撞
+     bool bHit = false;
+	
     //创建球体组件
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<USphereComponent> Sphere;
+
+	//碰撞效果
+    UPROPERTY(EditAnywhere)
+	TObjectPtr<UNiagaraSystem> ImpactEffect;
+	//碰撞音效
+	UPROPERTY(EditAnywhere)
+	TObjectPtr<USoundBase>   ImpactSound;
+
+	//循环音效
+	UPROPERTY(EditAnywhere)
+	TObjectPtr<USoundBase> LoopingSound;
+
+	//音效组件
+	UPROPERTY()
+	TObjectPtr<UAudioComponent> LoopingSoundComponent;
 };

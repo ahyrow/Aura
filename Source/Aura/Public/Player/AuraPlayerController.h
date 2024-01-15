@@ -49,6 +49,9 @@ private:
 	UPROPERTY(EditAnywhere,Category="Input")
 	TObjectPtr<UInputAction> MoveAction;
 
+	UPROPERTY(EditAnywhere,Category="Input")
+	TObjectPtr<UInputAction> ShiftAction;
+
 	UPROPERTY(EditDefaultsOnly,Category="Input")
 	TObjectPtr<UAuraInputConfig> InputConfig;
 private:
@@ -63,6 +66,12 @@ private:
 	void AbilityInputTagReleased(FGameplayTag InputTag);
 	//按住
 	void AbilityInputTagHeld(FGameplayTag InputTag);
+
+	/*Shift*/
+	void ShiftPressed(){bShiftKeyDown = true;};
+	void ShiftReleased(){bShiftKeyDown = false; };
+
+	bool bShiftKeyDown = false;
 
 	//自动运行
 	void AutoRun();

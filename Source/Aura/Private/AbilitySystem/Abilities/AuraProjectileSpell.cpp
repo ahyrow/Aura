@@ -17,7 +17,7 @@ void UAuraProjectileSpell::ActivateAbility(const FGameplayAbilitySpecHandle Hand
 	
 }
 
-void UAuraProjectileSpell::SpawnProjectile()
+void UAuraProjectileSpell::SpawnProjectile(const FVector& ProjectileTargetLoacation)
 {
 	
 	//如果是服务器的话返回true
@@ -31,10 +31,18 @@ void UAuraProjectileSpell::SpawnProjectile()
 	{
 		//拿到武器插槽位置
 		const FVector SocketLocation = CombatInterface->GetCombatSocketLocation();
+		//目标位置与武器插槽位置之间的向量
+		FRotator Rotator = (ProjectileTargetLoacation - SocketLocation).Rotation();
+		//Pitch值归0
+		Rotator.Pitch =0.f;
+		
 		//生成AuraProjectile
 		FTransform SpawnTransform;
 		//在武器插槽位置生成
 		SpawnTransform.SetLocation(SocketLocation );
+		//设置方向
+		SpawnTransform.SetRotation(Rotator.Quaternion());
+	
 		AAuraProjectile* Projectile = GetWorld()->SpawnActorDeferred<AAuraProjectile>
 		(ProjectileClass,
 			SpawnTransform,

@@ -24,7 +24,7 @@ protected:
 
 	//生成Projectile函数
 	UFUNCTION(BlueprintCallable,Category="Projectile")
-	void SpawnProjectile();
+	void SpawnProjectile(const FVector& ProjectileTargetLoacation);
 	
 
 	UPROPERTY(EditAnywhere,BlueprintReadOnly)

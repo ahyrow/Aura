@@ -64,9 +64,14 @@ void AAuraPlayerController::SetupInputComponent()
 	//EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AAuraPlayerController::Move);
 	UAuraEnhancedInputComponent* AuraEnhancedInputComponent = CastChecked<UAuraEnhancedInputComponent>(EnhancedInputComponent);
 	AuraEnhancedInputComponent->BindAction(MoveAction,ETriggerEvent::Triggered,this,&AAuraPlayerController::Move);
+	
+	AuraEnhancedInputComponent->BindAction(ShiftAction,ETriggerEvent::Started,this,&AAuraPlayerController::ShiftPressed);
+	AuraEnhancedInputComponent->BindAction(ShiftAction,ETriggerEvent::Completed,this,&AAuraPlayerController::ShiftReleased);
 
 	AuraEnhancedInputComponent->BindAbilityActions
 	(InputConfig,this,&ThisClass::AbilityInputTagPressed,&ThisClass::AbilityInputTagReleased,&ThisClass::AbilityInputTagHeld);
+
+	
 }
 
 void AAuraPlayerController::Move(const FInputActionValue& InputActionValue)
@@ -110,47 +115,39 @@ void AAuraPlayerController::AbilityInputTagReleased(FGameplayTag InputTag)
 	//当不是鼠标左键被按住时 可以执行游戏能力
 	if(!InputTag.MatchesTagExact(FAuraGameplayTags::Get().InputTag_LMB))
 	{
-		if(GetASC())
-		{
-			GetASC()->AbilityInputTagReleased(InputTag);
-		}
+		if(GetASC()) GetASC()->AbilityInputTagReleased(InputTag);
 		return;
 	}
-	//当thisActor为空指针时执行游戏能力    
-	if(bTargeting)
-	{
-		if(GetASC())
-		{
-			GetASC()->AbilityInputTagHeld(InputTag);
-		}
-	}
-	else
+		if(GetASC()) GetASC()->AbilityInputTagReleased(InputTag);
+
+	if(!bTargeting && !bShiftKeyDown)
 	{
 		APawn* ControllerPawn = GetPawn(); 
 		//判断浮动时间是否小于短按时间
-         if(FollowTime<=ShortPressThreshold&&ControllerPawn)
-         {
-	         //先创建自动导航
-         if( UNavigationPath* NavigaPath=
-         		UNavigationSystemV1::FindPathToLocationSynchronously(this,ControllerPawn->GetActorLocation(),CacheDestination))
-         {
-         	//每次创建前先清理样条点
-         	Spline->ClearSplinePoints();
-         	//循环遍历导航的整个路径点
-         	for(auto& PointLoc : NavigaPath->PathPoints)
-         	{
-         		//路径点加入 样条线
-         		Spline->AddSplinePoint(PointLoc,ESplineCoordinateSpace::World);
-         	}
-         	//如果点击碰到有障碍物阻挡的情况下 重置一下目的地 将目的地设置为样条线的最后一个点(因为是可到达的点) 
-         	CacheDestination = NavigaPath->PathPoints[NavigaPath->PathPoints.Num()-1];
-         	//是否自动running 变为true
-            bAutoRunning = true;
-         }
-         }
+		if(FollowTime<=ShortPressThreshold&&ControllerPawn)
+		{
+			//先创建自动导航
+			if( UNavigationPath* NavigaPath=
+					UNavigationSystemV1::FindPathToLocationSynchronously(this,ControllerPawn->GetActorLocation(),CacheDestination))
+			{
+				//每次创建前先清理样条点
+				Spline->ClearSplinePoints();
+				//循环遍历导航的整个路径点
+				for(auto& PointLoc : NavigaPath->PathPoints)
+				{
+					//路径点加入 样条线
+					Spline->AddSplinePoint(PointLoc,ESplineCoordinateSpace::World);
+				}
+				//如果点击碰到有障碍物阻挡的情况下 重置一下目的地 将目的地设置为样条线的最后一个点(因为是可到达的点) 
+				CacheDestination = NavigaPath->PathPoints[NavigaPath->PathPoints.Num()-1];
+				//是否自动running 变为true
+				bAutoRunning = true;
+			}
+		}
 		FollowTime = 0.f;
 		bTargeting = false;
 	}
+	
 }
 
 void AAuraPlayerController::AbilityInputTagHeld(FGameplayTag InputTag)
@@ -164,8 +161,8 @@ void AAuraPlayerController::AbilityInputTagHeld(FGameplayTag InputTag)
 		}
 		return;
 	}
-	//当thisActor为空指针时执行游戏能力    
-    if(bTargeting)
+	//当thisActor为空指针时/按下shift Key 时 执行游戏能力    
+    if(bTargeting||bShiftKeyDown)
     {
     	if(GetASC())
     	{
@@ -190,6 +187,8 @@ void AAuraPlayerController::AbilityInputTagHeld(FGameplayTag InputTag)
     	}
     }
 }
+
+
 
 void AAuraPlayerController::AutoRun()
 {
