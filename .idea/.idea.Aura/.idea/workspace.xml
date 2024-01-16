@@ -4,13 +4,7 @@
     <projectFile>Intermediate/ProjectFiles/Aura.vcxproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="67de206d-9f15-43d0-ae9c-3cf1bd8ccec2" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura/.idea/indexLayout.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura/.idea/projectSettingsUpdater.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Platforms/HoloLens/Config/HoloLensEngine.ini" beforeDir="false" />
-    </list>
+    <list default="true" id="67de206d-9f15-43d0-ae9c-3cf1bd8ccec2" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -22,31 +16,31 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 0
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2b28monfYOivQmRCu9XOz4fLoVF" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "rider.external.source.directories": [
-      "C:\\Users\\Administrator\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\DecompilerCache",
-      "C:\\Users\\Administrator\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\SourcesCache",
-      "C:\\Users\\Administrator\\AppData\\Local\\Symbols\\src"
+  &quot;keyToStringList&quot;: {
+    &quot;rider.external.source.directories&quot;: [
+      &quot;C:\\Users\\Administrator\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\DecompilerCache&quot;,
+      &quot;C:\\Users\\Administrator\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\SourcesCache&quot;,
+      &quot;C:\\Users\\Administrator\\AppData\\Local\\Symbols\\src&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="Aura" type="CppProject" factoryName="C++ Project">
       <configuration_1>
@@ -119,8 +113,12 @@
       <option name="presentableId" value="Default" />
       <updated>1705402027694</updated>
       <workItem from="1705402029053" duration="3221000" />
+      <workItem from="1705420744649" duration="155000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
