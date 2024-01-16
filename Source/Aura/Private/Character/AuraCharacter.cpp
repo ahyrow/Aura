@@ -8,6 +8,7 @@
 #include <Player/AuraPlayerController.h>
 #include <UI/HUD/AuraHUD.h>
 #include "AbilitySystem/AuraAbilitySystemComponent.h"
+#include "Components/CapsuleComponent.h"
 
 AAuraCharacter::AAuraCharacter()
 {
@@ -16,6 +17,9 @@ AAuraCharacter::AAuraCharacter()
 	GetCharacterMovement()->RotationRate = FRotator(0.f, 400.f, 0.f);
 	GetCharacterMovement()->bConstrainToPlane = true;
 	GetCharacterMovement()->bSnapToPlaneAtStart = true;
+
+
+
 
 	bUseControllerRotationPitch = false;
 	bUseControllerRotationRoll = false;

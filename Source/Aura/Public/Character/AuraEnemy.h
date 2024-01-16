@@ -5,9 +5,11 @@
 #include "CoreMinimal.h"
 #include "Character/AuraCharacter.h"
 #include "Interaction/EnemyInterface.h"
+#include "UI/WidgetController/OverlayWidgetController.h"
 #include "AuraEnemy.generated.h"
 
 
+class UWidgetComponent;
 /**
  * 
  */
@@ -27,6 +29,13 @@ public:
 	virtual int32 GetPlayerLevel() override;
 	/** End Combat Interface */
 
+	//创建生命值代理 蓝图可分配
+	UPROPERTY(BlueprintAssignable)
+	FOnAttributeChangedSignature OnHealthChanged;
+
+	UPROPERTY(BlueprintAssignable)
+	FOnAttributeChangedSignature OnMaxHealthChanged;
+
 protected:
 	 
 	virtual void BeginPlay() override;
@@ -37,4 +46,7 @@ protected:
 	//AI的等级不复制,只关心服务器上的级别
 	UPROPERTY(EditAnywhere,BlueprintReadOnly,Category = "Character Class Defaults")
 	int32 Level=1;
+
+	UPROPERTY(EditAnywhere,BlueprintReadOnly)
+	UWidgetComponent* HealthBar; 
 };

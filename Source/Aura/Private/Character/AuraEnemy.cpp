@@ -5,20 +5,23 @@
 #include <Aura/Aura.h>
 #include "AbilitySystem/AuraAbilitySystemComponent.h"
 #include "AbilitySystem/AuraAttributeSet.h"
+#include "Components/WidgetComponent.h"
 
 AAuraEnemy::AAuraEnemy()
 {
+
+    
 	
 	GetMesh()->SetCollisionResponseToChannel(ECC_Visibility, ECR_Block);
-
 	AbilitySystemComponent = CreateDefaultSubobject<UAuraAbilitySystemComponent>("AbilitySystemComponent");
-
-	
-AbilitySystemComponent -> SetIsReplicated(true);
+    AbilitySystemComponent -> SetIsReplicated(true);
     AbilitySystemComponent->SetReplicationMode(EGameplayEffectReplicationMode::Minimal);
 
 	AttributeSet=CreateDefaultSubobject<UAuraAttributeSet>("AttributeSet");
 
+    //创建Bar控件组件
+	HealthBar= CreateDefaultSubobject<UWidgetComponent>(TEXT("HealthBar"));
+	HealthBar->SetupAttachment(GetRootComponent());
 }
 void AAuraEnemy::HightlightActor()
 {
@@ -48,8 +51,19 @@ int32 AAuraEnemy::GetPlayerLevel()
 void AAuraEnemy::BeginPlay()
 {
 	Super::BeginPlay();
-
 	InitAbilityActorInfo();
+	//绑定生命值代理
+	//拿到属性集
+	UAuraAttributeSet* AuraAS = Cast<UAuraAttributeSet>(AttributeSet);
+	if(AuraAS)
+	{
+       AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(AuraAS->GetHealthAttribute()).AddLambda(
+       	[this](const FOnAttributeChangeData& Data)
+       {
+	     OnHealthChanged.Broadcast(Data.NewValue);  
+       });
+		
+	}
 }
 
 void AAuraEnemy::InitAbilityActorInfo()
@@ -60,5 +74,6 @@ void AAuraEnemy::InitAbilityActorInfo()
 	{
 		AuraAbilitySystemComponent->AbilityActorInfoSet();
 	}
-		
+
+	InitializeDefaultAttributes();
 }

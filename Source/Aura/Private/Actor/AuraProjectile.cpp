@@ -2,10 +2,14 @@
 
 
 #include "Actor\AuraProjectile.h"
+
+#include "AbilitySystemBlueprintLibrary.h"
+#include "AbilitySystemComponent.h"
 #include "Components/SphereComponent.h"
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "NiagaraFunctionLibrary.h"
+#include "Aura/Aura.h"
 #include "Components/AudioComponent.h"
 
 // Sets default values
@@ -19,6 +23,8 @@ AAuraProjectile::AAuraProjectile()
 	 */
 	Sphere = CreateDefaultSubobject<USphereComponent>(TEXT("Sphere"));
 	SetRootComponent(Sphere);
+	//修改为自定义的碰撞类型
+	Sphere->SetCollisionObjectType(ECC_Projectile);
 	Sphere->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
 	Sphere->SetCollisionResponseToAllChannels(ECR_Ignore);
 	Sphere->SetCollisionResponseToChannel(ECC_WorldDynamic,ECR_Overlap);
@@ -45,7 +51,7 @@ void AAuraProjectile::BeginPlay()
 	Super::BeginPlay();
 	SetLifeSpan(LifeSPan);
 	Sphere->OnComponentBeginOverlap.AddDynamic(this,&AAuraProjectile::OnSphereOverlap);
-//生成的时候绑定下声音组件
+    //生成的时候绑定下声音组件
     LoopingSoundComponent =	UGameplayStatics::SpawnSoundAttached(LoopingSound,GetRootComponent());
 }
 
@@ -53,7 +59,7 @@ void AAuraProjectile::Destroyed()
 {
 	
 
-	if(!bHit&&!HasAuthority())
+	if(!bHit && !HasAuthority())
 	{	UGameplayStatics::PlaySoundAtLocation(this,ImpactSound,GetActorLocation(),FRotator::ZeroRotator);
 		UNiagaraFunctionLibrary::SpawnSystemAtLocation(this,ImpactEffect,GetActorLocation());
 
@@ -74,6 +80,12 @@ void AAuraProjectile::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, 
     LoopingSoundComponent->Stop();
 	if(HasAuthority())
 	{
+        if(UAbilitySystemComponent* TargetASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(OtherActor))
+        {
+           TargetASC->ApplyGameplayEffectSpecToSelf(*DamageEffectSpecHandle.Data.Get());
+        	
+        }
+		
 		Destroy();
 	}
 	else
