@@ -52,6 +52,13 @@ void AAuraEnemy::BeginPlay()
 {
 	Super::BeginPlay();
 	InitAbilityActorInfo();
+
+
+	//给BarWidget赋值
+	if(UAuraUserWidget* AuraUserWidget = Cast<UAuraUserWidget>(HealthBar->GetUserWidgetObject()))
+	{
+		AuraUserWidget->SetWidgetController(this);
+	}
 	//绑定生命值代理
 	//拿到属性集
 	UAuraAttributeSet* AuraAS = Cast<UAuraAttributeSet>(AttributeSet);
@@ -62,7 +69,14 @@ void AAuraEnemy::BeginPlay()
        {
 	     OnHealthChanged.Broadcast(Data.NewValue);  
        });
-		
+		AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(AuraAS->GetMaxHealthAttribute()).AddLambda(
+		   [this](const FOnAttributeChangeData& Data)
+	   {
+		 OnMaxHealthChanged.Broadcast(Data.NewValue);  
+	   });
+      //广播初始值
+		OnHealthChanged.Broadcast(AuraAS->GetHealth());
+		OnMaxHealthChanged.Broadcast(AuraAS->GetMaxHealth());
 	}
 }
 

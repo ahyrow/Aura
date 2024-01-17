@@ -47,6 +47,7 @@ protected:
 	UPROPERTY(EditAnywhere,BlueprintReadOnly,Category = "Character Class Defaults")
 	int32 Level=1;
 
+	//生命值3dUI组件
 	UPROPERTY(EditAnywhere,BlueprintReadOnly)
 	UWidgetComponent* HealthBar; 
 };

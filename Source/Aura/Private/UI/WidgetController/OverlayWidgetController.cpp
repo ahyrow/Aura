@@ -8,7 +8,7 @@
 
 void UOverlayWidgetController::BroadcastInitiaValues()
 {   
-	//»ñÈ¡AuraÊôĞÔ¼¯ ÒÔ¼°ÉúÃüÖµ ×î´óÉúÃüÖµ
+	//è·å–Auraå±æ€§é›† ä»¥åŠç”Ÿå‘½å€¼ æœ€å¤§ç”Ÿå‘½å€¼
 	UAuraAttributeSet* AuraAttributeSet = CastChecked<UAuraAttributeSet>(AttributeSet);
 	OnHealthChanged.Broadcast(AuraAttributeSet->GetHealth());
 	OnMaxHealthChanged.Broadcast(AuraAttributeSet->GetMaxHealth());
@@ -56,7 +56,7 @@ void UOverlayWidgetController::BindCallbacksToDependcies()
      	
 	for(FGameplayTag Tag : AssetTags )
 	{
-        //ÇëÇó±êÇ©±ê¼Ç
+        //è¯·æ±‚æ ‡ç­¾æ ‡è®°
   		FGameplayTag MessageTag =FGameplayTag::RequestGameplayTag(FName("Message"));
  
 	   if(Tag.MatchesTag(MessageTag))

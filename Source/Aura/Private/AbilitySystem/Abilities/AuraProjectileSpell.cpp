@@ -23,12 +23,13 @@ void UAuraProjectileSpell::SpawnProjectile(const FVector& ProjectileTargetLoacat
 {
 	
 	//如果是服务器的话返回true
-	const bool bIsServer=GetAvatarActorFromActorInfo()->HasAuthority();
-	//如果不在服务器  return
-	if(!bIsServer) return;
+		const bool bIsServer = GetAvatarActorFromActorInfo()->HasAuthority();
+		//如果不在服务器  return
+		if(!bIsServer) return;
 
-	//根据拥有这类能力的Character  拿到战斗接口     
-	ICombatInterface* CombatInterface = Cast<ICombatInterface>(GetAvatarActorFromActorInfo());
+		//根据拥有这类能力的Character  拿到战斗接口     
+		ICombatInterface* CombatInterface = Cast<ICombatInterface>(GetAvatarActorFromActorInfo());
+
 	if(CombatInterface)
 	{
 		//拿到武器插槽位置
