@@ -36,7 +36,7 @@ class AURA_API UCharacterClassInfo : public UDataAsset
 public:
 	
    //使用Tmap来映射 角色类对应的角色信息
-	UPROPERTY(EditDefaultsOnly,Category= "Character Class Defaults")
+	UPROPERTY(EditAnywhere,Category= "Character Class Defaults")
 	TMap<ECharacterClass,FCharacterClassDefaultInfo> CharacterClassInfomation;
 	
 	UPROPERTY(EditDefaultsOnly,Category= "Common Class Defaults")

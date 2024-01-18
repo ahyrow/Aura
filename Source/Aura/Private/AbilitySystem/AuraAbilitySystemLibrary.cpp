@@ -2,6 +2,8 @@
 
 
 #include "AbilitySystem/AuraAbilitySystemLibrary.h"
+
+#include "Game/AuraGameModeBase.h"
 #include "Kismet/GameplayStatics.h"
 #include "Player/AuraPlayerState.h"
 #include "UI/HUD/AuraHUD.h"
@@ -49,4 +51,13 @@ UAttributeMenuWidgetController* UAuraAbilitySystemLibrary::GetAttributeMenuWidge
 
 
 	return nullptr;
+}
+
+void UAuraAbilitySystemLibrary::InitializeDefaultAttributes(const UObject* WorldContextObject,ECharacterClass CharacterClass, float Level)
+{
+     //获取游戏模式
+	AAuraGameModeBase* AuraGameModeBase= Cast<AAuraGameModeBase>(UGameplayStatics::GetGameMode(WorldContextObject));
+	if(!AuraGameModeBase) return;
+	//拿到枚举对应的信息
+	FCharacterClassDefaultInfo ClassDefaultInfo =AuraGameModeBase->CharacterClassInfo->GetClassDefaultInfo(CharacterClass);
 }
