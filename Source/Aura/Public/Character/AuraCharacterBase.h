@@ -33,7 +33,7 @@ protected:
 	virtual void BeginPlay() override;
 	virtual void InitAbilityActorInfo();
 	
-
+	virtual void InitializeDefaultAttributes() const;
 public:
 	UPROPERTY(EditAnywhere,Category="Combat")
 	TObjectPtr<USkeletalMeshComponent> Weapon;
@@ -73,7 +73,7 @@ protected:
 
 	
 
-	void InitializeDefaultAttributes() const;
+	
 
 	//��ʼ���������Է�װ�ɺ���
 	void ApplyEffectToSelf(TSubclassOf<UGameplayEffect> GameplayEffectclass , float Level) const;

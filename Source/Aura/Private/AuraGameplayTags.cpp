@@ -84,5 +84,10 @@ void FAuraGameplayTags::InitializeNatveGameplayTags()
 
 
 
-	
+
+	/*
+	 * Damage
+	 */
+	GameplayTags.Damage=
+				UGameplayTagsManager::Get().AddNativeGameplayTag(FName("Damage"),FString("Damage"));
 }

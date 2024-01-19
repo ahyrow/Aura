@@ -6,6 +6,7 @@
 #include "Character/AuraCharacter.h"
 #include "Interaction/EnemyInterface.h"
 #include "UI/WidgetController/OverlayWidgetController.h"
+#include "AbilitySystem//Data/CharacterClassInfo.h"
 #include "AuraEnemy.generated.h"
 
 
@@ -29,7 +30,7 @@ public:
 	virtual int32 GetPlayerLevel() override;
 	/** End Combat Interface */
 
-	//´´½¨ÉúÃüÖµ´úÀí À¶Í¼¿É·ÖÅä
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Í¼ï¿½É·ï¿½ï¿½ï¿½
 	UPROPERTY(BlueprintAssignable)
 	FOnAttributeChangedSignature OnHealthChanged;
 
@@ -40,14 +41,17 @@ protected:
 	 
 	virtual void BeginPlay() override;
 	virtual void InitAbilityActorInfo() override;
-
+    virtual void InitializeDefaultAttributes() const override;
 
 protected:
-	//AIµÄµÈ¼¶²»¸´ÖÆ,Ö»¹ØÐÄ·þÎñÆ÷ÉÏµÄ¼¶±ð
+	//AIï¿½ÄµÈ¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,Ö»ï¿½ï¿½ï¿½Ä·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÏµÄ¼ï¿½ï¿½ï¿½
 	UPROPERTY(EditAnywhere,BlueprintReadOnly,Category = "Character Class Defaults")
 	int32 Level=1;
 
-	//ÉúÃüÖµ3dUI×é¼þ
+	UPROPERTY(EditAnywhere,BlueprintReadOnly,Category = "Character Class Defaults")
+	ECharacterClass CharacterClass = ECharacterClass::Warrior;
+	
+	//ï¿½ï¿½ï¿½ï¿½Öµ3dUIï¿½ï¿½ï¿½
 	UPROPERTY(EditAnywhere,BlueprintReadOnly)
 	UWidgetComponent* HealthBar; 
 };

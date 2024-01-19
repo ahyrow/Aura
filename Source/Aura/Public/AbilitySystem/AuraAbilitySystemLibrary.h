@@ -9,6 +9,7 @@
 
 enum class ECharacterClass : uint8;
 class UOverlayWidgetController;
+class UAbilitySystemComponent;
 /**
  * 
  */
@@ -26,5 +27,5 @@ public:
 
    //
 	UFUNCTION(BlueprintCallable,Category="AbilitySystemLibrary|CharacterClassDefaults")
-	static void InitializeDefaultAttributes(const UObject* WorldContextObject,ECharacterClass CharacterClass,float Level);
+	static void InitializeDefaultAttributes(const UObject* WorldContextObject,ECharacterClass CharacterClass,float Level,UAbilitySystemComponent* ASC);
 };

@@ -20,8 +20,7 @@ UOverlayWidgetController* UAuraAbilitySystemLibrary::GetOverlayWidgetController(
      	UAbilitySystemComponent* ABS=PS->GetAbilitySystemComponent();
      	UAttributeSet* AS =PS->GetAttributeSet();
         const FWidgetControllerParms WidgetControllerParms(PC,PS,ABS,AS);
-     	
-          return AuraHUD->GetOverlayWidgetController(WidgetControllerParms);
+     	return AuraHUD->GetOverlayWidgetController(WidgetControllerParms);
      	
      }
 		
@@ -53,11 +52,30 @@ UAttributeMenuWidgetController* UAuraAbilitySystemLibrary::GetAttributeMenuWidge
 	return nullptr;
 }
 
-void UAuraAbilitySystemLibrary::InitializeDefaultAttributes(const UObject* WorldContextObject,ECharacterClass CharacterClass, float Level)
+void UAuraAbilitySystemLibrary::InitializeDefaultAttributes(const UObject* WorldContextObject,ECharacterClass CharacterClass, float Level,UAbilitySystemComponent* ASC)
 {
      //获取游戏模式
 	AAuraGameModeBase* AuraGameModeBase= Cast<AAuraGameModeBase>(UGameplayStatics::GetGameMode(WorldContextObject));
 	if(!AuraGameModeBase) return;
+
+
+	AActor* AvatarActor = ASC->GetAvatarActor(); 
 	//拿到枚举对应的信息
-	FCharacterClassDefaultInfo ClassDefaultInfo =AuraGameModeBase->CharacterClassInfo->GetClassDefaultInfo(CharacterClass);
+	UCharacterClassInfo* CharacterClassInfo = AuraGameModeBase->CharacterClassInfo;
+	FCharacterClassDefaultInfo ClassDefaultInfo =CharacterClassInfo->GetClassDefaultInfo(CharacterClass);
+	//应用GE
+    FGameplayEffectContextHandle PrimaryAttributesContextHandle = ASC->MakeEffectContext();
+	PrimaryAttributesContextHandle.AddSourceObject(AvatarActor);
+	const FGameplayEffectSpecHandle PrimaryAttributesSpecHandle = ASC->MakeOutgoingSpec(ClassDefaultInfo.PrimaryAttributes,Level,PrimaryAttributesContextHandle);
+	ASC->ApplyGameplayEffectSpecToSelf( *PrimaryAttributesSpecHandle.Data.Get());
+
+	FGameplayEffectContextHandle SecondaryAttributesContextHandle = ASC->MakeEffectContext();
+	SecondaryAttributesContextHandle.AddSourceObject(AvatarActor);
+	const FGameplayEffectSpecHandle SecondaryAttributesSpecHandle = ASC->MakeOutgoingSpec(CharacterClassInfo->SecondaryAttributes,Level,SecondaryAttributesContextHandle);
+	ASC->ApplyGameplayEffectSpecToSelf( *SecondaryAttributesSpecHandle.Data.Get());
+
+	FGameplayEffectContextHandle  VitalAttributesContextHandle = ASC->MakeEffectContext();
+	VitalAttributesContextHandle.AddSourceObject(AvatarActor);
+	const FGameplayEffectSpecHandle VitalAttributesSpecHandle = ASC->MakeOutgoingSpec(CharacterClassInfo->VitalAttributes,Level,VitalAttributesContextHandle);
+	ASC->ApplyGameplayEffectSpecToSelf( *VitalAttributesSpecHandle.Data.Get());
 }
