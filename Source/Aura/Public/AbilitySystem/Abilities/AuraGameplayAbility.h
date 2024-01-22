@@ -18,4 +18,9 @@ public:
 
 	UPROPERTY(EditDefaultsOnly,Category="Input")
 	FGameplayTag StartupInputTag;
-};
+
+	//创建伤害浮动值
+    UPROPERTY(EditDefaultsOnly,BlueprintReadOnly,Category="Damage")
+	FScalableFloat Damage;
+}
+;
