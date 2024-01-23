@@ -9,7 +9,7 @@
 #include "AuraCharacterBase.generated.h"
 
 
- class UGameplayAbility;
+class UGameplayAbility;
 class UAbilitySystemComponent;
 class UAttributeSet;
 class UAuraAttributeSet;
