@@ -43,6 +43,16 @@ protected:
 	virtual void InitAbilityActorInfo() override;
     virtual void InitializeDefaultAttributes() const override;
 
+	//受击后标签更改的回调函数
+	void HitReactTagChanged(const FGameplayTag CallbackTag,int32 NewCount);
+
+	//是否受击
+	UPROPERTY(BlueprintReadOnly,Category="Cambat")
+	bool bHitReacting = false;
+	UPROPERTY(BlueprintReadOnly,Category="Cambat")
+	//基础速度
+	float BaseWalkSpeed = 250.f;
+
 protected:
 	//AI�ĵȼ�������,ֻ���ķ������ϵļ���
 	UPROPERTY(EditAnywhere,BlueprintReadOnly,Category = "Character Class Defaults")
@@ -53,5 +63,7 @@ protected:
 	
 	//����ֵ3dUI���
 	UPROPERTY(EditAnywhere,BlueprintReadOnly)
-	UWidgetComponent* HealthBar; 
+	UWidgetComponent* HealthBar;
+
+
 };

@@ -15,7 +15,7 @@ class UAbilitySystemComponent;
  */
 UCLASS()
 class AURA_API UAuraAbilitySystemLibrary : public UBlueprintFunctionLibrary
-{
+{	
 	GENERATED_BODY()
 public:
 	//

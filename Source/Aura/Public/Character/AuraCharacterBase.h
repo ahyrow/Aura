@@ -29,6 +29,8 @@ public:
 	UAttributeSet* GetAttributeSet() { return AttributeSet; };
 	//UAuraAttributeSet* GetAttributeSet() { return AttributeSet; };
 
+	//重写战斗接口提供的函数
+    virtual UAnimMontage* GetHitReactMontage_Implementation()  override;
 protected:
 	virtual void BeginPlay() override;
 	virtual void InitAbilityActorInfo();
@@ -86,5 +88,8 @@ private:
 	//游戏开始时赋予的角色能力
 	UPROPERTY(EditAnywhere,Category="Abilities")
 	TArray<TSubclassOf<UGameplayAbility>>  StartupAbilities;
+
+	UPROPERTY(EditAnywhere,Category="Combat")
+	TObjectPtr<UAnimMontage> HitReactMontage;
 
 };
