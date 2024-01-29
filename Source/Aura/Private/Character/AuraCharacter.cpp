@@ -55,6 +55,11 @@ int32 AAuraCharacter::GetPlayerLevel()
 	return AuraPlayerState->GetPlayerLevel() ;
 }
 
+void AAuraCharacter::Die()
+{
+	Super::Die();
+}
+
 
 void AAuraCharacter::InitAbilityActorInfo()
 {

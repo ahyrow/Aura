@@ -46,6 +46,14 @@ public:
 	//实现战斗接口函数
 	virtual FVector GetCombatSocketLocation() override; 
 
+
+
+	virtual void Die() override;
+
+	//网络多播
+	UFUNCTION(NetMulticast,Reliable)
+	virtual void MulticastHandleDeath();
+	
     UPROPERTY()
 	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent;
     UPROPERTY()
@@ -84,6 +92,22 @@ protected:
 	//添加角色能力函数
 	void AddCharacterAbilities();
 
+
+	/*
+	 * 溶解效果
+	 */
+    //替换溶解材质的方法
+	void Dissolve();
+
+	//溶解时间
+	void StartDissolveTimeLine(UMaterialInstance* DynamicMaterialInstance);
+	
+	//创建材质实例
+	UPROPERTY(EditAnywhere,BlueprintReadOnly)
+	TObjectPtr<UMaterialInstance> DissolveMaterrialInstance;
+
+	UPROPERTY(EditAnywhere,BlueprintReadOnly)
+	TObjectPtr<UMaterialInstance> WeaponDissolveMaterrialInstance;
 private:
 	//游戏开始时赋予的角色能力
 	UPROPERTY(EditAnywhere,Category="Abilities")

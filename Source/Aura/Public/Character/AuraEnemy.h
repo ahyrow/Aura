@@ -37,6 +37,8 @@ public:
 	UPROPERTY(BlueprintAssignable)
 	FOnAttributeChangedSignature OnMaxHealthChanged;
 
+	virtual void Die() override;
+
 protected:
 	 
 	virtual void BeginPlay() override;
@@ -52,6 +54,9 @@ protected:
 	UPROPERTY(BlueprintReadOnly,Category="Cambat")
 	//基础速度
 	float BaseWalkSpeed = 250.f;
+	UPROPERTY(EditAnywhere,BlueprintReadOnly,Category="Cambat")
+	//生命时长
+	float LifeSpan = 5.f;
 
 protected:
 	//AI�ĵȼ�������,ֻ���ķ������ϵļ���

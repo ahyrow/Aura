@@ -27,7 +27,7 @@ AAuraCharacterBase::AAuraCharacterBase()
     GetMesh()->SetGenerateOverlapEvents(true);
 
 	Weapon = CreateDefaultSubobject<USkeletalMeshComponent>("Weapon");
-	Weapon->SetupAttachment(GetMesh(), FName("L_Hand_WeaponSocket"));
+	Weapon->SetupAttachment(GetMesh(), FName("L_Hand_WeaponSocket"));   //(GetMesh(), FName("L_Hand_WeaponSocket"));
 	Weapon->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 }
 
@@ -56,6 +56,39 @@ FVector AAuraCharacterBase::GetCombatSocketLocation()
 {
 	//根据武器插槽名称获得插槽位置
 	return Weapon->GetSocketLocation(WeaponTipSocketName);
+}
+
+void AAuraCharacterBase::Die()
+{
+	//武器脱手
+	Weapon->DetachFromComponent(FDetachmentTransformRules(EDetachmentRule::KeepWorld,true));
+	MulticastHandleDeath();
+}
+
+void AAuraCharacterBase::MulticastHandleDeath_Implementation()
+{
+	/*
+	 * 死亡后的布娃娃效果
+	 */
+
+	/*
+	 * 武器
+	 */
+	//开启模拟物理
+	Weapon->SetSimulatePhysics(true);
+	//启用重力
+	Weapon->SetEnableGravity(true);
+	//启用碰撞
+	Weapon->SetCollisionEnabled(ECollisionEnabled::PhysicsOnly);
+
+	/*
+	 * Mesh
+	 */
+	GetMesh()->SetSimulatePhysics(true);
+	GetMesh()->SetEnableGravity(true);
+	GetMesh()->SetCollisionEnabled(ECollisionEnabled::PhysicsOnly);
+	GetMesh()->SetCollisionResponseToChannel(ECC_WorldStatic,ECR_Block);
+    GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 }
 
 
@@ -87,6 +120,18 @@ void AAuraCharacterBase::AddCharacterAbilities()
 	 if(!HasAuthority()) return;
 	//调用ASC中封装的给予能力函数
 	AuraASC->AddCharacterAbilities(StartupAbilities);
+}
+
+void AAuraCharacterBase::Dissolve()
+{
+	if(IsValid(DissolveMaterrialInstance))
+	{
+		UMaterialInstanceDynamic* DynamicInstance = UMaterialInstanceDynamic::Create(DissolveMaterrialInstance,this);
+	}
+}
+
+void AAuraCharacterBase::StartDissolveTimeLine(UMaterialInstance* DynamicMaterialInstance)
+{
 }
 
 
