@@ -100,12 +100,19 @@ protected:
 	void Dissolve();
 
 	//溶解时间
-	void StartDissolveTimeLine(UMaterialInstance* DynamicMaterialInstance);
-	
-	//创建材质实例
+	UFUNCTION(BlueprintImplementableEvent)
+	void StartDissolveTimeLine(UMaterialInstanceDynamic* DynamicMaterialInstance);
+
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void StartWeaponDissolveTimeLine(UMaterialInstanceDynamic* DynamicMaterialInstance);
+	/*
+	 * 创建材质实例
+	 */
+	//身体
 	UPROPERTY(EditAnywhere,BlueprintReadOnly)
 	TObjectPtr<UMaterialInstance> DissolveMaterrialInstance;
-
+    //武器
 	UPROPERTY(EditAnywhere,BlueprintReadOnly)
 	TObjectPtr<UMaterialInstance> WeaponDissolveMaterrialInstance;
 private:

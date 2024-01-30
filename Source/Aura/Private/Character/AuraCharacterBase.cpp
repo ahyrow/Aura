@@ -4,6 +4,7 @@
 #include "Character/AuraCharacterBase.h"
 
 #include "AbilitySystemComponent.h"
+#include "ShaderPrintParameters.h"
 #include "AbilitySystem/AuraAbilitySystemComponent.h"
 #include "Aura/Aura.h"
 #include "Components/CapsuleComponent.h"
@@ -68,7 +69,7 @@ void AAuraCharacterBase::Die()
 void AAuraCharacterBase::MulticastHandleDeath_Implementation()
 {
 	/*
-	 * 死亡后的布娃娃效果
+	 * 死亡后的散落效果
 	 */
 
 	/*
@@ -89,6 +90,11 @@ void AAuraCharacterBase::MulticastHandleDeath_Implementation()
 	GetMesh()->SetCollisionEnabled(ECollisionEnabled::PhysicsOnly);
 	GetMesh()->SetCollisionResponseToChannel(ECC_WorldStatic,ECR_Block);
     GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+
+	/*
+	 * 溶解效果
+	 */
+	Dissolve();
 }
 
 
@@ -126,12 +132,27 @@ void AAuraCharacterBase::Dissolve()
 {
 	if(IsValid(DissolveMaterrialInstance))
 	{
+		//创建动态材质
 		UMaterialInstanceDynamic* DynamicInstance = UMaterialInstanceDynamic::Create(DissolveMaterrialInstance,this);
+		//赋值给Mesh
+		GetMesh()->SetMaterial(0,DynamicInstance);
+        //溶解时长
+		StartDissolveTimeLine(DynamicInstance);
+		
 	}
+	if(IsValid(WeaponDissolveMaterrialInstance))
+	{
+         
+		//创建动态材质
+		UMaterialInstanceDynamic* DynamicInstance = UMaterialInstanceDynamic::Create(WeaponDissolveMaterrialInstance,this);
+		//赋值给Mesh
+		Weapon->SetMaterial(0,DynamicInstance );
+		//溶解时长
+		StartWeaponDissolveTimeLine(DynamicInstance);
+	} 
+	
 }
 
-void AAuraCharacterBase::StartDissolveTimeLine(UMaterialInstance* DynamicMaterialInstance)
-{
-}
+
 
 
