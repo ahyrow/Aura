@@ -40,7 +40,7 @@ void UAuraProjectileSpell::SpawnProjectile(const FVector& ProjectileTargetLoacat
 		//Pitch值归0
 		Rotator.Pitch =0.f;
 		
-		//生成AuraProjectile
+		//生成AuraProjectile	
 		FTransform SpawnTransform;
 		//在武器插槽位置生成
 		SpawnTransform.SetLocation(SocketLocation );
