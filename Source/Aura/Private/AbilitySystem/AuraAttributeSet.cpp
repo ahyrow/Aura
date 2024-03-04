@@ -175,7 +175,6 @@ void UAuraAttributeSet::SetEffectProperties(const FGameplayEffectModCallbackData
 {
 	//拿到源的能力系统组件
 	Props.EffectContextHandle = Data.EffectSpec.GetContext();
-	
 	Props.SourceASC =Props.EffectContextHandle.GetOriginalInstigatorAbilitySystemComponent();
 
 
